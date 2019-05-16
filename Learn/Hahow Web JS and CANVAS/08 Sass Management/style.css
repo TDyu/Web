@@ -1,0 +1,130 @@
+@charset "UTF-8";
+* {
+  border: solid 1px;
+}
+
+.btnGrey {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #eee;
+  color: #232526;
+  /* sass函數darken($color, $amount值) 幫助變深顏色
+			lighten($color, $amount值) 幫助變淺顏色 */
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btnGrey.large {
+  padding: 30px 60px;
+}
+
+.btnGrey.middle {
+  padding: 20px 40px;
+}
+
+.btnGrey.small {
+  padding: 10px 20px;
+}
+
+.btnGrey:hover {
+  background-color: #dadada;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btnYellow {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ffd82b;
+  color: #232526;
+  /* sass函數darken($color, $amount值) 幫助變深顏色
+			lighten($color, $amount值) 幫助變淺顏色 */
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btnYellow.large {
+  padding: 30px 60px;
+}
+
+.btnYellow.middle {
+  padding: 20px 40px;
+}
+
+.btnYellow.small {
+  padding: 10px 20px;
+}
+
+.btnYellow:hover {
+  background-color: #ffd002;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btnBlack {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #232526;
+  color: #fff;
+  /* sass函數darken($color, $amount值) 幫助變深顏色
+			lighten($color, $amount值) 幫助變淺顏色 */
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btnBlack.large {
+  padding: 30px 60px;
+}
+
+.btnBlack.middle {
+  padding: 20px 40px;
+}
+
+.btnBlack.small {
+  padding: 10px 20px;
+}
+
+.btnBlack:hover {
+  background-color: #0f1011;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btnRed {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff5151;
+  color: #232526;
+  /* sass函數darken($color, $amount值) 幫助變深顏色
+			lighten($color, $amount值) 幫助變淺顏色 */
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.btnRed.large {
+  padding: 30px 60px;
+}
+
+.btnRed.middle {
+  padding: 20px 40px;
+}
+
+.btnRed.small {
+  padding: 10px 20px;
+}
+
+.btnRed:hover {
+  background-color: #ff2828;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/*# sourceMappingURL=style.css.map */

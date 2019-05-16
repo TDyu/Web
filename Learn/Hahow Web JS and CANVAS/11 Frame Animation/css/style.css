@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/* 定義一組keyframes(所定義的那組動畫 每個frame的狀態) 要使用時是用 animation-name這個屬性來指定動畫名稱(就是這裡定義的這個名稱) 還有用animation-duration這個屬性來指定 "花多久時間做完"這一個動畫 也可以用animation-iteration-count這個屬性來決定 重複多少次(指定次數 or infinite(無限播放)) 還有animation-direction來指定方向 給reverse這個值 就是反向播放  alternate是會自動正播一次反播一次(但是這個要注意 設定的次數要有足夠讓他再播返回來的那次 比如你設定1次那它還是只有過去的那次) animation-delay: 延遲多久後再開始 (可以設定負數 代表故意要它執行到某個時候 讓我們一打開就看到) animation-fill-mode: 填補狀態 both就是前(抓0%的狀態往前填補到還沒開始前的)後(抓100%的狀態往後填)填補 或是直接用animation這個屬性 然後就是把一切接後面當屬性 animation-play-state 指定狀態 */
+@-webkit-keyframes ani { /* 原狀態: 可以用"from"來寫 也可以用0%來寫(多彈性) */
+  0% { left: 0;
+    background-color: green; }
+  50% { width: 100px;
+    height: 100px;
+    background-color: blue;
+    border-radius: 50%; }
+  /* 變啥: 可以用"to"來寫 也可以用100%來寫 */
+  100% { left: calc(100% - 50px); } }
+@keyframes ani { /* 原狀態: 可以用"from"來寫 也可以用0%來寫(多彈性) */
+  0% { left: 0;
+    background-color: green; }
+  50% { width: 100px;
+    height: 100px;
+    background-color: blue;
+    border-radius: 50%; }
+  /* 變啥: 可以用"to"來寫 也可以用100%來寫 */
+  100% { left: calc(100% - 50px); } }
+
+@-webkit-keyframes rotate { 0%, 50%, 100% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  25%, 75% { -webkit-transform: translateX(500px) rotate(45deg); transform: translateX(500px) rotate(45deg); } }
+
+@keyframes rotate { 0%, 50%, 100% { -webkit-transform: rotate(0deg); transform: rotate(0deg); }
+  25%, 75% { -webkit-transform: translateX(500px) rotate(45deg); transform: translateX(500px) rotate(45deg); } }
+
+html, body { width: 100%; height: 100%; display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; background-color: #333; }
+
+.rect { width: 50%; height: 300px; position: relative; background-color: #FFF; /*animaiton: animation-name animation-duration animation-delay(有預設值0) animation-iteration-count*/ -webkit-animation: rotate 5s 2s infinite; animation: rotate 5s 2s infinite; }
+
+.rect:hover { -webkit-animation-play-state: paused; animation-play-state: paused; }
+
+/* 因為ball在rect裡面 所以rect做動畫時 裡面的ball的動畫也會依據外面的rect來動 可以說是ball的坐標系是rect了 也就是說你可以讓他一個控制轉 一個控制前進 之類的 */
+.ball { width: 50px; height: 50px; background-color: red; position: absolute; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); -webkit-animation-name: ani; animation-name: ani; -webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-iteration-count: infinite; animation-iteration-count: infinite; -webkit-animation-direction: alternate; animation-direction: alternate; -webkit-animation-delay: 2s; animation-delay: 2s; -webkit-animation-fill-mode: both; animation-fill-mode: both; }
+
+/*# sourceMappingURL=style.css.map */

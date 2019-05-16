@@ -1,0 +1,159 @@
+.flexrow {
+	display: flex; /* 讓flexrow裡面的兩個範例card在同行 */
+}
+
+/* 如果用空格 ".flexrow div" 是代表 flexrow底下不管多深的div都會被影響 
+   現在是用> ".flexrow>div" 是代表只有flexrow下一層(也僅止於下一層)的div會被影響 這裡就是那兩個同一行的範例 */
+.flexrow > div {
+	flex: 1; /* 也就是那兩個範例平分這一列 */
+}
+
+.flexcard {
+	border: solid 3px black;
+	width: 400px;
+	height: 200px;
+	font-size: 30px;
+	display: flex; /* 以flexbox控制 */
+}
+
+.left {
+	flex: 6; /* 依據父容器和其他兄弟分到6的比例 */
+	background-color: #f9d400;
+}
+
+.mid {
+	background-color: #ff9900;
+	/* 分配問題可參考: https://wcc723.github.io/css/2013/10/24/css-flex-1/ */
+	/* 混合使用: 在過去這樣的問題相當難解決，透過CSS3我們可以將許多種單位混用，如下範例，可以先切200px，在切20%，剩餘的區域在分為1/4與3/4*/
+	flex: 120px; /* 可以直接指定是120px 但是會有根據整體分配寬度的問題  所以要加上以下兩個 強制固定住。 另外我猜有指定的話 會先分指定的 其他空位再去做分配 */
+	flex-shrink: 0px; /* 不要縮減 */
+	flex-grow: 0px; /* 不要膨脹 */
+	/* 強制了以後會發現 假如指定一個根本超過父容器寬度的值 它會照樣就固定那個值 但是其他人至少會分到一份根據父容器的寬度的寬度(話說即使你指定寬度是0px還是自動至少有一份 不管有沒有指定能不能縮帳) 所以整個加起來就會超出父容器了 */
+}
+
+.right {
+	flex: 4; /* 依據父容器和其他兄弟分到4的比例 */
+	background-color: #ff5000;
+}
+
+.flexcard2 {
+	flex-direction: column; /* 變成垂直排列 也就是主軸線變成垂直線 */
+}
+
+.flexcard3, .flexcard4 {
+	width: 100%;
+}
+
+.flexcard3 .left {
+	flex: 400px;
+}
+
+.flexcard3 .mid {
+	flex: 300px;
+}
+
+.flexcard3 .right {
+	flex: 200px;
+	flex-grow: 0; /* 網頁放大時導致分配會變成在200以上時 會被等比例放大 但是現在要他不要給我膨脹 讓其他空間去脹! */
+}
+
+.flexcard4 .left {
+	flex: 400px;
+	flex-shrink: 0; /* 網頁縮小時導致分配會變成在400以下時 會被等比例縮減 但是現在要他不要給我膨脹 讓其他空間去脹! */
+	/* 導覽頁常用 可以設定哪一塊最重要的導覽頁不能被縮小 */
+}
+
+.flexcard4 .mid {
+	flex: 300px;
+}
+
+.flexcard4 .right {
+	flex: 200px;
+}
+
+.flexcard5 {
+	flex-direction: row-reverse;
+}
+
+.flexcard5 .mid {
+	/* order: -1;  指定順序為-1並不是說倒數第一個 而是這些人當中編號-1(預設都是0 所以就按照寫的順序排) 所以這裡其他沒指定 而他寫-1就是比0還小 那就是現在最小的 會排第一個 如果設定1 就會比所有0的大 就是最後一個 又現在是從右邊算 所以會排右邊第一個 */
+	/* 常用在為 商品資訊時 本來正常來看是左邊字右邊圖  但是縮畫面時 圖就放到下面去了 如果設-1 可以讓它跑上面 */
+}
+
+.flexcard6 {
+	flex-direction: column-reverse;
+}
+
+.items {
+	border: solid 3px black;
+	height: 300px;
+	/* width沒寫就讓它自動分 */
+	position: relative; /* 為了要讓裡面的兩個軸線能夠絕對定位 而不是一直追溯到整個頁面(root) */
+	display: flex; /* 裡面的東西預設左上開始一直依序排(原本是div會往下疊 現在直接往右) */
+	/* flex-direction: row; 等於預設的 主軸橫向 左上開始 */
+	/* justify-content: center; 沿著主軸置中 (如果主軸是row那就是當前y的位置的左右置中) */
+	/* justify-content: flex-end; 沿著主軸最"末端"(要看從哪開始) (如果主軸是row那就是當前y的位置的最右邊) */
+	/* justify-content: flex-start; 沿著主軸"前端"(要看從哪開始) (如果主軸是row那就是當前y的位置的最左邊) */
+	/* align-items: center; 沿著副軸置中 (如果副軸是column那就是當前x位置的垂直置中) */
+	/* align-items: flex-end; 沿著副軸"末端"(要看從哪開始) */
+	/* align-items: flex-start; 沿著副軸"前端"(要看從哪開始) */
+}
+
+.mainAxis {
+	position: absolute;
+	width: 100%;
+	height: 0; /* 因為要呈現一條線的樣子 */
+	border: solid 2px red;
+	top: 50%; /* 放到中間 */
+}
+
+.subAxis {
+	position: absolute;
+	width: 0;
+	height: 100%; /* 因為要呈現一條線的樣子 */
+	border: solid 2px blue;
+	left: 50%; /* 放到中間 */
+}
+
+.items .item {
+	width: 80px;
+	height: 80px;
+	background-color: #ddd;
+	font-size: 30px;
+	/* 為了得到置中 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: solid 1px #bbb;
+}
+
+.items.jStart{
+  justify-content: flex-start;
+}
+.items.jCenter{
+  justify-content: center;
+}
+.items.jEnd{
+  justify-content: flex-end;
+}
+.items.aStart{
+  align-items: flex-start;
+}
+.items.aCenter{
+  align-items: center;
+}
+.items.aEnd{
+  align-items: flex-end;
+}
+.items.jBetween{
+  justify-content: space-between; /* 最左右不要留空間 而元素之間平均分配空間 */
+}
+.items.jAround{
+  justify-content: space-around; /* 每個元素左右兩邊各留一份空間 所以兩個元素之間就會有兩份(一個留右邊一個留左邊) */
+}
+.items.jEvenly{
+  justify-content: space-evenly; /* 最左右留空間 且元素之間平均分配空間 = 整條平均分 */
+}
+.items.rowReverse{
+  flex-direction: row-reverse;
+}

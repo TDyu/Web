@@ -1,0 +1,78 @@
+/*
+一般會先對 整個 tag 層級做基礎設定 讓所有標籤表現行為都一樣
+再來做有特定化分class的做設定
+再來做更特定化的分id做設定
+*/
+
+* { /* *: choose all elements */
+	/* 一開始可以先弄個框線出來 方便排版(算是debuger?), 最後在註解掉 */
+	/*border: solid 1px black; */
+	font-family: 微軟正黑體;
+}
+
+html, body { /* html "&"" body */
+	width: 100%;
+	height: 100%;
+	margin: 0; /* Emmet語法:m0 tab。當你把寬高都變100%時會發現有奇怪的間距(是html 和 body之間預設的margin), 所以加這個拿掉它 */
+	background-color: #111; /* 深黑色。 通常黑色不會是用純黑色 白色不會是純白色 這樣會整體性更高不會死黑死白 */
+	/* 放到畫面中央 */
+	display: flex;
+	justify-content: center; /* 將內容排在目前的頁面中央  左右置中(注意:畫面不一定有撐滿 所以不一定看起來在正中央, 可以把html, body的width和height都變成100%來保證撐滿) */
+	align-items: center; /* 讓所有body裡面的元素排在中央  上下置中 */
+}
+
+.card {
+	width: 800px;
+	display: flex;
+	border: solid 1px; /* 外框: 實心 2px 顏色(預設好像黑色); */
+	/*background-color: #fff;*/
+	border-radius: 10px; /* 如果只有這裡設定是沒用的 因為裡面的元素沒有設定圓角 那如果有超出的部分如果沒有隱藏那就不會被限制 所以要有下面那個overflow*/
+	overflow: hidden;
+}
+
+.card-left {
+	width: 40%; /* 根據parent的width調整 */
+	background-image: url(http://wx4.sinaimg.cn/mw690/005Krhyzgy1fjh6rn2wjbj30j60eeaay.jpg); /* Emmet縮寫bgi。為啥不直接在html裡面用img? 因為那會影響整個版面(啪!的貼上去的感覺XD) 還要設定一堆例如超出邊界的部分不要出現還是雜的問題 */
+	background-size: cover; /* Emmet縮寫bgz。cover: 上下左右盡量撐滿 */
+	background-position: 50%; /* 我查的... */
+}
+
+.card-right {
+	width: 60%; /* 根據parent的width調整 */
+	padding: 20px; /* 上下左右的內距: 與自己內部元素的距離 */
+	background-color: #3EBDFF;
+}
+
+.smalltext {
+	font-size: 15px;
+	color: #999;
+	font-weight: normal;
+	margin-left: 10px; /* 左邊外距: 跟左邊外面東西的距離 */
+	/*vertical-align: initial;*/
+}
+
+ul {
+	padding-left: 0; /* 因為預設會有內距 這裡先拿掉這個 因為下面要用inline-block */
+}
+
+ul li { /* 代表 ul 下面的 li (不是代表ul & li) 也就是空格代表選取的意思 */
+	display: inline-block; /* 排在同一行 但如果寬度不夠就還是往下排 */
+	/* block的話就是所有list items都會左右撐滿
+	   inner-block會根據內文自動調整大小 */
+	/*width: 30%; 可以不自己設定寬度 可以用inline-block讓他自己設定寬度出來 在透過內外距擠出空白區域 */
+	padding: 5px 10px; /* 兩個數值就對應 上下 左右 */
+	border-radius: 5px; /* 角的弧度 */
+	vertical-align: top; /* 垂直對齊 上頭: 意思是你要把元素用垂直線來看, 然後所有垂直線齊頭排 */
+	margin-right: 20px;
+	background-color: #00BEA4;
+	color: #fff;
+}
+
+h2 {
+	font-size: 26px;
+	margin-top: 30px;
+}
+
+p {
+	line-height: 25px;
+}

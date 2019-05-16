@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+* 
+	// border: solid 2px black
+
+$colorBlue: #307BE1
+$colorDeepBlue: #2F4A6E
+$colorYellow: #FFC12C
+$colorOrange: #F38A0C
+$colorShadow: rgba(black,0.1)
+
+// inset是在裡面 左右 上下 顏色
+$shadowInset: inset -10px -10px 0px $colorShadow
+
+// 預設高=寬 就是在正方形時用上
+@mixin size ($width, $height: $width)
+	width: $width
+	height: $height
+
+// 把置中的flex box設定抽出來
+@mixin flexCenter
+	display: flex
+	justify-content: center
+	align-items: center
+
+// 當作頭髮的 有圓角的矩形
+@mixin borderRadiusRectangle ($width, $height, $borderRadius:$height / 2)
+	width: $width
+	height: $height
+	border-radius: $borderRadius // 圓角就是高度/2(你自己想像要往內平滑地凹一半)
+
+@mixin hair ($width, $height)
+	+borderRadiusRectangle($width, $height)
+	background-color: white
+	box-shadow: $shadowInset
+
+html, body
+	+size(100%)
+	margin: 0
+	+flexCenter
+
+.scene
+	+size(600px, 500px)
+	+flexCenter
+	background-color: $colorBlue
+	position: relative // 為了標題能做絕對定位
+
+	.title
+		// 因為要人臉在中間 所以title要在左上的話不能再用間距調 會擠到臉 所以這裡用絕對定位
+		position: absolute
+		left: 20px
+		top: 20px
+		margin: 0 // 拿掉h1預設外距
+		font-size: 50px
+		color: white
+		opacity: 0 // 0~1  (透明~不透明)
+		transition: 0.5s
+
+		.question
+			font-size: 35px
+			color: $colorYellow
+			margin: 0
+			/* none連出現都不會出現 */
+			display: none
+
+.person
+	position: relative // 為了message能用人物做絕對定位 (否則再往上找是剛剛scene有做relative)
+
+	.message
+		font-size: 20px
+		font-weight: bold
+		color: white
+		position: absolute
+		left: -200px
+		top: 50px
+		opacity: 0
+
+	.hairs
+		position: relative // 預設是static 現在用relative就是有順序概念 但是因為沒有指定順序 所以大家都是0 那全部頭髮就會在臉的前面(臉還是static大概值不高?)
+		// z-index: 5 // 渲染高度 數字越大越蓋在上面
+		// 如果三個都是可以定位的元素 就會依照在html給的順序做排列
+		.hair1
+			+hair(150px, 80px)
+			margin-left: 10px
+			// position: relative // 如果想要這層到前面 可以把por放這
+		.hair2
+			+hair(150px, 60px)
+			// 只在sass可以用的margin分層設定方法(用推進一格來表簡寫)
+			// position: relative // 如果想要這層到前面 可以把por放這
+			margin:
+				left: 50px
+				top: -40px // 製造重疊效果
+		.hair3
+			+hair(150px, 70px)
+			// position: relative // 如果想要這層到前面 可以把por放這
+			margin:
+				left: 5px
+				top: -45px
+
+.face
+	+borderRadiusRectangle(210px, 120px, 40px)
+	padding-top: 50px
+	margin-top: -40px // 讓臉被頭髮蓋到點
+	background-color: $colorYellow
+	box-shadow: $shadowInset
+
+	.eyes
+		// 這裡可以一次設到兩隻眼睛
+		.eye
+		 	+borderRadiusRectangle(50px, 25px)
+		 	display: inline-block // 讓眼球在同一行
+		 	margin-right: 5px // 離右邊眼睛是5px
+		 	margin-left: 15px
+		 	background-color: white
+
+		 	.eyeball
+		 		+borderRadiusRectangle(25px, 25px) // 因為寬高一樣 又取圓角 所以看起來就像圓形
+		 		background-color: $colorDeepBlue
+
+	.mouth
+		+borderRadiusRectangle(70px, 25px)
+		background-color: $colorOrange
+		// 以margin設定位置
+		margin:
+			top: 15px
+			left: 70px
+
+		.food
+			+borderRadiusRectangle(12px, 12px)
+			margin-left: -40px // 讓他到嘴巴外面去
+			background-color: $colorOrange
+
+/* 管hover區 其實也可以直接寫在.scence裡面用多層級&:hover 但是這裡要做的調整有點多 所以額外拿出來當一塊 比較清楚 */
+.scene:hover
+	.person
+		margin-top: 50px
+
+		/* 讓第三根頭髮左間距變0 會讓人物比較有留在原地的錯覺 */
+		.hairs
+			.hair3
+				margin-left: 0px
+
+		.face
+			/* 這裡要給兩組陰影 一組是原本臉裡面的 後面一組是給hover時外面一層陰影 */
+			box-shadow: $shadowInset, 30px 10px $colorShadow
+
+		/* 整個scene被移入情況下(所以寫在這.scene:hover裡面) 更進一步滑鼠指到人物時(要多一個.person:hover) "臉"外面的陰影要變動左邊
+			這時可使用多層級 就是寫&:hover在person裡面
+			這個& 也就是person被帶入 */
+		&:hover
+			transform: translateX(40px) // 整個臉右跑
+
+			.message
+				opacity: 1
+
+			.face
+				box-shadow: $shadowInset, -30px 10px $colorShadow
+				background-color: $colorOrange
+
+			.eyes
+				transform: translateX(30px) // 眼睛右跑
+
+			.eyeball
+				transform: translateX(25px) // 眼球右跑(少一點)
+
+			.mouth
+				transform: translateX(20px) // 嘴巴右跑
+
+				&:hover
+					transform: translateX(40px)
+
+	.title
+		opacity: 1
+
+/* 管漸變區 (也可以直接寫在裡面 只是統一抽出來管比較清楚)
+ 	(我猜的:) 另外直接設定在例如.scene下面的話 剛剛的hover的部份也會有延遲 因為:hover是套一個屬性進去 所以還是scene管的人 */
+.scene
+	.title
+		transition: 0.5s
+.person
+	transition: 0.5s
+	
+	.message
+		transition-delay: 0.5s // 延遲0.5s (漸變在下面那個全部的已經指定了)
+
+	.face
+		/* 分別兩種延遲 一個是整個臉 一個是指定臉色的部份比較長 而且有1s的delay(1s不會變化的時間 然後再做4s秒的漸變) */
+		transition: 0.5s, background-color 4s 1s // 其實這裡那個0.5s的可以不寫了 因為下面有個*已經指定整個人(當然包括臉)有轉變0.5s的時間了
+
+	/* "*"代表所有, 寫在person裡面 代表person裡面每個都有漸變效果 */
+	* 
+		transition: 0.5s
+
+/* 按下去的事件 */
+.scene:hover:active
+	.question
+		display: block
+
+	.person
+		/* scale 縮放 */
+		transform: scale(0.9)
+
+		.hairs
+			transform: translateY(-25px)
+		
+		/* 這裡因為是active裡面事件的事了 所以如果要人物hover時也要變小 就要再定義
+			或是直接.scene:hover再:active 這樣就會再繼承.scene:hover的基礎上再做active的事件 */
+		// &:hover
+		// 	transform: scale(0.9)

@@ -1,0 +1,363 @@
+@charset "UTF-8";
+// 引入字體 (從google font(google字體開源平台)拿來的)
+// 但是只是引進 要用的時候還是要指定的
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display')
+
+// Color
+$colorBlueRoofLight: #6fc5ff
+$colorBlueRoofDark: #0058ff
+$colorGreyLight: #fafaf5
+$colorGreyNormal: #e3e2cf
+$colorGreyDark: #bebdaf
+$colorBackground: #2C2F36
+$colorShadowBlue: #7cb1ff
+$colorShadowBlueLight: #8dc9fc
+$colorWindowGrey: #534d4d
+
+// 屋頂2層漸層 (比較繁雜所以抽出來當變數)
+// linear-gradient 要background才能用 background-color不行
+$roofGradient: linear-gradient(150deg, $colorBlueRoofLight, $colorBlueRoofDark)
+// 背景多層漸層
+// 利用多層和背景大小(background-size)和換背景位置這(background-position)種小技巧做白天和晚上的切換
+// 也就是晚上會是把位置呈現在深色的那部份, 早上再換到淺色的部份
+$sceneGradient: linear-gradient(#1D2B49,#1A45A0,#91cdff,#fff)
+
+// 設定Mixins
+=sizeBorderRadius($width, $height:$width, $borderRadius:0)
+	width: $width
+	height: $height
+	border-radius: $borderRadius
+  
+=flexCenter($justifyContent:center, $alignItems:center)
+	display: flex
+	justify-content: $justifyContent
+	align-items: $alignItems
+
+=absolutePosition($leftValue:initial, $topValue:initial) // initial 代表預設值
+	position: absolute
+	left: $leftValue
+	top: $topValue
+  
+*, *:before, *:after// 所有before和after這些虛擬元素預設沒有框線 所以統一先加進去看
+	// 當找不到第一個指定字形時 往第二個找
+	// 通常中文字載入比較慢 所以先設定英文字
+	// 當真的要用中文字時再去用中文字形的
+	font-family: "Playfair Display","微軟正黑體"
+	position: relative
+	// border: solid 2px black
+	// background-color: #fff
+
+html, body
+	+sizeBorderRadius(100%)
+	margin: 0
+	+flexCenter
+	background-color: $colorBackground
+	color: white
+
+// 中間的主要場景
+.scene
+	+sizeBorderRadius(700px, 500px, 15px)
+	background: $sceneGradient
+	/* 晚上的版本 */
+	background-size: 100% 300% // 因為是預設上到下 所以這裡先把淺色的部份擠出去
+	box-shadow: 0px 0px 30px rgba(black,0.3)
+	overflow: hidden
+  
+// 左側上放的文字 (可以寫在.scene裡面 也可以抽出來寫 反正很清楚知道是誰)
+.leftTopText
+	margin:
+		left: 30px
+		top: 30px
+
+	h1
+		font-size: 36px
+		letter-spacing: 3px
+		margin-top: 0
+		font-weight: 300
+
+	h5
+		font-size: 14px
+		letter-spacing: 1px
+		opacity: 0.6
+		margin-bottom: 0
+		font-weight: 300
+
+	p
+		font-size: 14px
+		line-height: 24px
+		letter-spacing: 2px
+		opacity: 0.6
+
+	.blueBlock
+		background-color: $colorShadowBlue
+		+sizeBorderRadius(20px, 25px)
+  
+// 右邊建築物群
+.building
+	position: absolute
+	right: 0
+	bottom: 0
+	transform: scale(0.95)
+  
+/* 選取class 開頭等於(用^=)house的 */
+// 讓所有房子以右下角為絕對定位
+[class^="house"]
+	position: absolute
+	bottom: 0
+	right: 0
+	background-color: $colorGreyLight
+
+// 右側的第一棟
+.house1
+	+sizeBorderRadius(180px, 200px)
+	// background-color: $colorGreyLight
+	box-shadow: inset -50px 0px $colorGreyNormal // 每個房子都有內陰影
+	z-index: 1
+
+	.window
+		+sizeBorderRadius(40px, 100px, 20px) // 寬度一半也是圓弧效果 看了一下發現 垂直長條圓弧 用寬度一半合適 水平就壓高度的合適
+		background-color: $colorGreyNormal
+		box-shadow: inset 8px 5px $colorGreyDark
+		+flexCenter
+		flex-direction: column
+		margin:
+		  top: 40px
+		  left: 70px
+
+	.circle
+		+sizeBorderRadius(20px, 20px, 50%)
+		background-color: $colorWindowGrey
+		margin: 4px
+		margin-left: 10px
+    
+// 右下的第二棟
+.house2
+	+sizeBorderRadius(240px, 170px)
+	right: 130px
+	z-index: 2
+	// background-color: $colorGreyLight
+	/* 有兩個陰影 一個是上面內部藍色陰影(雖然不太像陰影...就當作利用陰影效果來畫上面那一條吧)
+         一個是右邊內部陰影
+    用逗號隔開一次寫兩個 */
+	box-shadow: inset 0px 15px $colorShadowBlueLight, inset -72px 0px $colorGreyNormal
+
+	.door
+		+sizeBorderRadius(40px, 80px, 20px 20px 0 0)
+		position: absolute
+		bottom: 0
+		left: 45px
+		background-color: $colorBackground
+		box-shadow: inset 10px 2px $colorShadowBlue // 沒有inset就是在整個門的右下邊 加了inset等於從整個門左邊起算距離 所以在左上方
+    
+// 後面的第三棟
+.house3
+	+sizeBorderRadius(320px,300px)
+	+flexCenter
+	// background-color: $colorGreyLight
+	z-index: 0 // 因為可定位才可以排序 因為預設的話按照html寫的順序越後面越上層  現在調0就是目前最後面(排列越小越後面)
+	box-shadow: 0px 0px 10px rgba(black, 0.1)
+
+	.wall
+		height: 100%
+		+flexCenter(center, flex-start) // 水平置中, 垂直對開頭(上面)排列
+
+		.window
+			+sizeBorderRadius(24px, 50px, 12px 12px 0px 0px)
+			margin-top: 30px
+			background-color: $colorBackground
+
+		/* 拿來做屋頂冠 */
+		&:before
+			content: ""
+			display: block
+			+sizeBorderRadius(105%, 20px)
+			position: absolute
+			top: -20px
+			/* inherit 繼承 父層的屬性*/
+			background-color: inherit
+			box-shadow: 0px 0px 10px rgba(black, 0.1)
+
+		// 專門用來設定wall 所以寫在裡面就好 (不要忘了我們有3面wall)
+		=wall($color, $flex, $windowShadowPan:0px, $roofPlanOrderIndex:1)
+			background-color: $color
+			flex: $flex
+
+			.window
+				box-shadow: inset $windowShadowPan 0px $colorShadowBlue
+
+			&:before
+				// background-color: $color //已經在before裡面用繼承做了
+				z-index: $roofPlanOrderIndex
+
+		// 第一面牆 (第一個div.wall)
+		&:nth-child(1)
+			+wall($colorGreyLight, 10, 8px)
+		&:nth-child(2)
+			+wall($colorGreyNormal, 14, 0px, 2) // 三面牆的最上方   
+		&:nth-child(3)
+			+wall($colorGreyDark, 10, -8px)
+   
+//屋頂跟小十字架
+// 屋頂半圓專用mixin
+=halfCir($radius)
+	+sizeBorderRadius($radius * 2, $radius, $radius $radius 0 0)
+
+.roof
+	+halfCir(150px)
+	position: absolute // 因為house3有flex的關係所以會和牆在同一列擠 所以要poa脫離排版系統控制
+	top: -170px // 原本因為flexCenter所以在中間 現在要往上移動
+	right: 5px
+	background: $roofGradient
+
+	.roofTop
+		+halfCir(14px)
+		+absolutePosition(50%, -14px)
+		transform: translateX(-50%)
+		background-color: #fff
+
+		// 十字架
+		.cross
+			+sizeBorderRadius(4px, 30px)
+			position: absolute
+			left: 50%
+			transform: translateX(-50%)
+			bottom: 10px
+			background-color: #fff
+
+			/* 用cross:before來做十字架的橫條 */
+			&:before
+				content: ""
+				display: block
+				+sizeBorderRadius(20px, 4px)
+				position: absolute // 這個before會去參照cross 因為它是在裡面得第一個元素 而cross又是可定位的
+				bottom: 15px
+				left: 50%
+				transform: translateX(-50%)
+				background-color: #fff
+
+// 星星容器
+.allStars
+	+sizeBorderRadius(100%) // 和卡片一樣大
+	+absolutePosition(0, 0)
+
+	@keyframes falling
+		// 控制透明
+		0%, 100%
+			opacity: 0
+		70%
+			opacity: 1
+
+		// 控制降落 (要右上到左下)
+		0%
+			transform: translate(100px, 0)
+		100%
+			transform: translate(0, 200px)
+
+	// 選取所有start開頭的class 也就是選取所有星星
+	[class^="star"]
+		background-color: #FFF
+		+sizeBorderRadius(3px, 3px, 50%)
+		animation: falling 2s infinite
+
+	// 隨機散開生星星
+	@for $i from 1 through 30
+		.star#{$i}
+			$positionX: random() * 100% // random(x) 是 [0, x), 如果只有random() 就是[0, 1)  現在*100% 就是[0, 100%)
+			$positionY: random() * -80% + 50% // 從外面落進來 變成(-30%, 50%] 就是最多從中間地方出現
+
+			+absolutePosition($positionX, $positionY)
+			animation-delay: $i * -0.1s // 錯開時間 要不很同步很怪 用負數是希望提前開始 要不一開始就會卡著也很怪
+
+.remind
+	opacity: 0.2
+	margin-bottom: 10px
+	letter-spacing: 1px
+
+// 預設隱藏白天
+.dayText
+	display: none
+
+// 都是圓形基礎 並且位置一樣 所以先一起已圓形然後調位置
+.sun, .moon
+	+sizeBorderRadius(50px, 50px, 50%)
+	+absolutePosition(250px, 100px)
+
+// 再特調sun
+.sun
+	background-color: #ffdd38
+	box-shadow: 0px 0px 20px rgba(#ffdd38, 0.5) // 用陰影做光暈
+	/* 預設是晚上 所以這裡預設太陽低一點(還沒升上來) 而且透明度為0(隱藏) */
+	top: 400px
+	opacity: 0
+
+// 特調moon
+.moon
+	@keyframes moonAppear
+		0% // 還沒出現 所以利用陰影蓋住全部(雖然不是完全透明 所以隱約看到)
+			box-shadow: inset 0px 0px rgba(white, 0.9)
+		100% // 完全出現左上弦月
+			/* 利用內陰影做出左上弦月效果 */
+			box-shadow: inset 10px -10px rgba(white, 0.9)
+
+	animation: moonAppear 2s both // both 是指定animation-fill-mode 做前後延伸 讓結束後也停留在100%時 要不然動畫做完月亮就會消失了
+
+// 控制漸變時間
+// 抓出所有要漸變的
+h1, h5, p, .moon, .sun, .scene, .allStars, .blueBlock, .building
+	transition: 2s
+
+/* 沒有寫js紀錄之下 用checkbox來當夜晚白天切換的小技巧
+  :checked 是有勾選的狀態
+  :是沒勾選的狀態
+  
+  用連綴(+號)的方式, 把checkbox放在場景的上面
+  然後checked狀態是+scene 也就是指定這個的下一個的東西scene
+  
+  然後利用label把checkbox和其他所有都放在這底下
+  這樣只要是在label範圍內點擊  都能算是點擊到checkbox
+
+  然後記得把這個box隱藏起來
+   */
+input:checked+.scene
+	background-position: 0 100% // 位置跑上去 變成淺色部份狀態
+
+	// 隱藏晚上的字
+	.nightText
+		display: none
+	
+	// 顯示白天的字
+	.dayText
+		display: block
+	
+	// 白天星星看不到
+	.allStars
+		opacity: 0
+	
+	// 文字顏色變黑色
+	h1, h5, p
+		color: #222
+
+	// 白天照到太陽 所以房子變亮一點
+	.building
+		/* filter濾鏡
+			brightness 亮度濾鏡 */
+		filter: brightness(105%) // 超過100%就是比原本來曝
+
+	// 月亮消失
+	.moon
+		// 太陽預設從下面上來 月亮當然要從上面消失
+		top: -100px
+		opacity: 0
+		top
+	// 太陽升起
+	.sun
+		top: 100px
+		opacity: 1
+	
+	// 方框變白
+	.blueBlock
+		background-color: #FFF
+
+// 隱藏勾選框
+input
+	display: none

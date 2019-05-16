@@ -1,0 +1,26 @@
+.title {
+  font-size: 50px;
+}
+
+.title .smallText {
+  font-size: 20px;
+}
+
+.title .smallText:hover {
+  color: red;
+}
+
+.title:hover {
+  color: blue;
+}
+
+.top .name {
+  position: absolute;
+  margin: 0;
+  left: 0;
+  bottom: 0;
+  padding: 5px 15px;
+  letter-spacing: 2px;
+}
+
+/*# sourceMappingURL=style.css.map */

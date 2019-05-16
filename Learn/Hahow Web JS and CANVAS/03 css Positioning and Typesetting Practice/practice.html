@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HTML/CSS快速入門 - css的定位與排列</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<h1>HTML/CSS快速入門 - css的定位與排列</h1>
+	<hr>
+	
+	<h2>Display</h2>
+	<!-- 其實所有元素css預設都是block(左右撐滿) (display: block;) -->
+	<h3>預設的Block會左右撐滿</h3>
+
+	<!-- inline-block 兩個特性
+	1. 自動把框框縮到內容範圍
+	2. 待在同一行(似乎是同意容器裡的和同class的) 
+	縮放頁面是會自動跑下去-->
+	<h3 class="ib">inline-block 自動縮放</h3>
+	<h3 class="ib">inline-block 自動縮放</h3>
+	<h3 class="ib">inline-block 自動縮放</h3>
+	<h3 class="ib">inline-block 自動縮放</h3>
+
+	<h2>Float(漂浮風格(例如查看更多)) (容器+ovh)</h2>
+	<h3 class="floattext">
+		<!-- 以下兩個div就是要拿來做float的元素 可以打在一起反正在css才會挑位置 -->
+		<div class="left">左側</div>
+		<!-- 以下在css會設置是靠右邊的float所以會依序從最右邊往左排12345 -->
+		<div class="right">更多1</div>
+		<div class="right">更多2</div>
+		<div class="right">更多3</div>
+		<div class="right">更多4</div>
+		<div class="right">更多5</div>
+		預設的Block會左右撐滿
+	</h3>
+
+	<!-- 非常重要的屬性 
+		可以幫助在html/css排版系統內或外中排列
+		有四種 -->
+	<h2>Position</h2>
+	<!-- Emmet快捷寫法 一次生出一整塊: .card>h4+.rects>rect*3 (>是往裡面的意思, +是同一層還有哪位兄弟)-->
+	<!-- 1. static 預設的屬性
+			救世會一個個放進去自動排列
+			只能透過內外距調整彼此距離
+			但不能任意偏移其一的東西
+			所以static是無法被定位的元素 -->
+	<div class="card cardStatic">
+		<h4>static 只能動外內距</h4>
+		<div class="rects">
+			<!-- 可以一次取兩個class 用意是他們有共用屬性 但又必須有各自的設定(而且有別組同樣的 或是為了選內部有一楊名字的時候的區別 要不就沒意義了) -->
+			<div class="rect rect1"></div>
+			<div class="rect rect2"></div>
+			<div class="rect rect3"></div>
+		</div>
+	</div>
+	<!-- 2. relative 可再指定偏移距離, 但還在排版系統(網頁預設的排版區)內
+			就是那個位置原本預設位置還是被留下, 所以是還在排版系統內
+			只是看起來像例如一個有色方塊偏出去
+			也就是根據原本位置做偏移 -->
+	<div class="card cardRelative">
+		<h4>relative 可以簡單偏移, 在排版系統內</h4>
+		<div class="rects">
+			<div class="rect rect1"></div>
+			<div class="rect rect2"></div>
+			<div class="rect rect3"></div>
+		</div>
+	</div>
+	<!-- 3. absolute 絕對定位, 是在排版系統外面
+			也就是能強硬在哪個框框的指定位置 而不參與排版系統
+			所以會看到原本預留位置沒有了 -->
+	<div class="card cardAbsolute">
+		<h4>absolute 絕對定位, 在排版系統外</h4>
+		<div class="rects">
+			<div class="rect rect1"></div>
+			<div class="rect rect2"></div>
+			<div class="rect rect3"></div>
+		</div>
+	</div>
+	<!-- 4. fixed 針對視窗的絕對定位, 明顯是在排版系統外面
+			就是你滑到其他地方它依舊依據視窗距離存在
+			就是蓋板廣告
+			會一層層找上去 看有沒有哪一層不是預設static的才能做絕對定位
+			所以如果只要針對card做絕對定位 那card這層就要不是static(不能是預設的) 通常就relative -->
+	<div class="card cardFixed">
+		<h4>fixed 視窗絕對定位, 在排版系統外</h4>
+		<div class="rects">
+			<div class="rect rect1"></div>
+			<div class="rect rect2"></div>
+			<div class="rect rect3"></div>
+		</div>
+	</div>
+</body>
+</html>

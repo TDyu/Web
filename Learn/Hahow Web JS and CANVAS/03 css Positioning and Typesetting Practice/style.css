@@ -1,0 +1,80 @@
+* {
+	border: solid 2px black;
+	display: block;
+}
+
+h3 {
+	background-color: #ccc;
+}
+
+h3.ib { /* 沒有空格就是指定h3裡面有.ib的 其實這裡直接寫.ib一樣 */
+	display: inline-block;
+}
+
+.left, .right {
+	background-color: #f24;
+	padding: 5px; /* 根據內容大小而變的寬度 適合用padding往內撐出一段空白距離 */
+	/* padding完發現其他東西冒出去了 要如何讓讓外部容器(這裡就是同樣在h3裡面 但是是在"相對於h3內部文字"的外面的div)根據內部內容(這裡就是h3裡面的文字)高度而變? => .floattext */
+}
+
+.left {
+	float: left; /* 靠著左邊漂浮 */
+}
+
+.right {
+	float: right; /* 靠著左邊漂浮 */
+}
+
+.floattext {
+	overflow: hidden; /* 要定義要把超出去的東西隱藏: 系統會去抓有沒有float的元素 然後去抓最高高度 達到讓外部容器根據內部高度而變 */
+}
+
+.card {
+	width: 500px;
+	height: 200px;
+	display: inline-block;
+	position: relative;
+}
+
+/* 因為是static 所以以下設置會發現紋風不動 */
+.cardStatic .rect2{
+	/*position: static; 預設就是static*/
+	left: 50px;
+	top: 50px;
+}
+
+.cardRelative .rect2{
+	position: relative;
+	left: 30px;
+	top: 30px;
+}
+
+.cardAbsolute .rect2{
+	position: absolute;
+	left: 150px;
+	top: 40px;
+}
+
+.cardFixed .rect2{
+	position: fixed;
+	right: 50px;
+	bottom: 50px;
+}
+
+.rects .rect {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+}
+
+.rects .rect1 {
+	background-color: blue;
+}
+
+.rects .rect2 {
+	background-color: red;
+}
+
+.rects .rect3 {
+	background-color: green;
+}

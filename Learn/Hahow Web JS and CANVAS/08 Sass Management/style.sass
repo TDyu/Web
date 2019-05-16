@@ -1,0 +1,65 @@
+// SASS基本使用教學：變數、函式、繼承、巢狀撰寫: https://coder.tw/?p=874
+@charset "UTF-8";
+*
+	border: solid 1px
+
+// 宣告變數
+// color
+$colorRed: #ff5151
+$colorYellow: #ffd82b
+$colorBlack: #232526
+$colorRed: #ff5151
+$colorGray: #eee
+$colorWhite: #fff
+// padding
+// $paddingLarge: 30px 60px 可以這樣設定
+$paddingLarge: 30px // 也可以等等用算了
+$paddingMiddle: 20px
+$paddingSmall: 10px
+
+// mixin 代表同一層級的東西(所以也可以在裡面用&表示)
+// 混合用的module (自己去比較函數的mixim用法)
+// @mixin 要抽出來的module名字
+// 要用的的時候就: +module名字
+@mixin buttons_module
+	display: inline-block
+	padding: 10px 20px
+
+// mixin 的 宣告函數 (注意函式的宣告建議放在CSS的最上面)
+// @mixin 函數名($變數名:預設值,...)
+//   屬性: $變數名
+// 要使用時: (影片教) +函數名(args)  / +函數名 (沒有給參數就會用定義的預設值)
+// 			(網址教) @include 函數名(args)
+@mixin buttons_func($color:$colorGray, $fontColor:$colorBlack)
+	display: inline-block
+	padding: 10px 20px
+	background-color: $color
+	color: $fontColor
+	
+	// 選擇情況都寫在這裡讓管理更方便 
+	// 就不用每次都要找同時那個按鈕的class再有這些其中一個class的
+	&.large // 同時具有
+		padding: $paddingLarge $paddingLarge*2
+	&.middle
+		padding: $paddingMiddle $paddingMiddle*2
+	&.small
+		padding: $paddingSmall $paddingSmall*2
+	
+	/* sass函數darken($color, $amount值) 幫助變深顏色
+			lighten($color, $amount值) 幫助變淺顏色 */
+	&:hover
+		background-color: darken($color, 8)
+		transition: 0.5s // 緩變
+	transition: 0.5s
+
+.btnGrey
+	+buttons_func
+
+.btnYellow
+	+buttons_func($colorYellow)
+
+.btnBlack
+	+buttons_func($colorBlack, $colorWhite)
+
+.btnRed
+	+buttons_func($colorRed)

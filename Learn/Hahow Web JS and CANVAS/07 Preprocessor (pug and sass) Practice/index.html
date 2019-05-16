@@ -1,0 +1,65 @@
+
+<!--
+http://www.vialley.com/378/%E7%AD%86%E8%A8%98%EF%BC%9Ajade%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E8%AA%9E%E8%A8%80
+
+http://blog.csdn.net/qing0706/article/details/51546078
+
+--><!DOCTYPE html>
+<html>
+  <head>
+    <title>Jade Intro</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h2>pug前處理語言</h2>
+    <!-- <h2 class="title red">pug前處理語言</h2> -->
+    <h2 class="title red">pug前處理語言</h2>
+    <!-- pug用indent控制誰在裡面(下一層)這個事 -->
+    <h2 class="title red">pug前處理語言<span class="smallText">小文字</span></h2>
+    <ul class="personlist">
+      <li class="person">
+        <h3>名字1</h3>
+        <p>介紹1</p>
+      </li>
+      <li class="person">
+        <h3>名字2</h3>
+        <p>介紹2</p>
+      </li>
+      <li class="person">
+        <h3>名字3</h3>
+        <p>介紹3</p>
+      </li>
+    </ul>
+    <!-- attribute在()裡面表示, 再空格就是接裡面的文字了 --><a href="/">超連結</a><img src="/" width="400px">
+    <hr>
+    <div class="box">
+      <div class="top">
+        <h2 class="name">浮光書店<span class="smallText">IlluminationBooks</span></h2>
+        <div class="tag"></div>
+        <div class="cirButton"></div>
+      </div>
+      <div class="bottom">
+        <ul>
+          <li>
+            <h3>地址:</h3>
+            <!--
+            屬於li的文字 只是前面多了一個h3
+            這裡用"|"(延續符號)代表同一層級
+            -->台北市....
+          </li>
+          <li>
+            <h3>Tel:</h3>xx
+          </li>
+          <li>
+            <h3>Time</h3>xx
+          </li>
+        </ul>
+        <div class="buttons">
+          <div class="btn btnWebsite" href="" target="_blank">前往網站</div>
+          <div class="btn btnNews" href="" target="_blank">更多訊息</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

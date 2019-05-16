@@ -1,0 +1,1131 @@
+@charset "UTF-8";
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  margin: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.virtical_ribbon, .horizontal_ribbon {
+  /* x位移 y位移 陰影擴散範圍 顏色(在css一定要指定rgb數值, 這裡有經過函數包裝 可以直接填顏色) */
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.virtical_ribbon {
+  width: 15%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  /* 轉變 移動X 回來自己的左邊一半寬 因為對齊是用元素左上角來對 經過上面的left後 應該是左邊線對齊中間了 並不是整個緞帶的中間對中間 */
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.horizontal_ribbon {
+  width: 100%;
+  height: 15%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.cap {
+  height: 15%;
+  /* calc 是css就有的屬性。 100%的寬度再外加10px 但是這裡是左對齊 不像之前用這個時是置中對齊才會平均兩邊長 所以等等要再移回來 */
+  width: calc(100% + 10px);
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* 剛剛多出去10px 拆一半回來 */
+  -webkit-transform: translateX(-5px);
+  -ms-transform: translateX(-5px);
+  transform: translateX(-5px);
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.present {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background-color: #ff5151;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  margin: 10px;
+}
+
+.present .virtical_ribbon, .present .horizontal_ribbon {
+  background-color: #fff;
+}
+
+.present .cap {
+  background-color: #ff5151;
+}
+
+.present1 {
+  width: 97px;
+  height: 97px;
+  position: relative;
+  background-color: #3364f7;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+  margin: 10px;
+}
+
+.present1 .virtical_ribbon, .present1 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present1 .cap {
+  background-color: #3364f7;
+}
+
+.present2 {
+  width: 89px;
+  height: 89px;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+  margin: 10px;
+}
+
+.present2 .virtical_ribbon, .present2 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present2 .cap {
+  background-color: #fff;
+}
+
+.present3 {
+  width: 87px;
+  height: 87px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  margin: 10px;
+}
+
+.present3 .virtical_ribbon, .present3 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present3 .cap {
+  background-color: #c747ff;
+}
+
+.present4 {
+  width: 93px;
+  height: 93px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(9deg);
+  -ms-transform: rotate(9deg);
+  transform: rotate(9deg);
+  margin: 10px;
+}
+
+.present4 .virtical_ribbon, .present4 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present4 .cap {
+  background-color: #f24;
+}
+
+.present5 {
+  width: 83px;
+  height: 83px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+  margin: 10px;
+}
+
+.present5 .virtical_ribbon, .present5 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present5 .cap {
+  background-color: #ffd221;
+}
+
+.present6 {
+  width: 67px;
+  height: 67px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(6deg);
+  -ms-transform: rotate(6deg);
+  transform: rotate(6deg);
+  margin: 10px;
+}
+
+.present6 .virtical_ribbon, .present6 .horizontal_ribbon {
+  background-color: #fff;
+}
+
+.present6 .cap {
+  background-color: #c747ff;
+}
+
+.present7 {
+  width: 69px;
+  height: 69px;
+  position: relative;
+  background-color: #3364f7;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+  margin: 10px;
+}
+
+.present7 .virtical_ribbon, .present7 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present7 .cap {
+  background-color: #3364f7;
+}
+
+.present8 {
+  width: 77px;
+  height: 77px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+  margin: 10px;
+}
+
+.present8 .virtical_ribbon, .present8 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present8 .cap {
+  background-color: #f24;
+}
+
+.present9 {
+  width: 55px;
+  height: 55px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+  margin: 10px;
+}
+
+.present9 .virtical_ribbon, .present9 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present9 .cap {
+  background-color: #ffd221;
+}
+
+.present10 {
+  width: 55px;
+  height: 55px;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+  margin: 10px;
+}
+
+.present10 .virtical_ribbon, .present10 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present10 .cap {
+  background-color: #fff;
+}
+
+.present11 {
+  width: 91px;
+  height: 91px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  margin: 10px;
+}
+
+.present11 .virtical_ribbon, .present11 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present11 .cap {
+  background-color: #c747ff;
+}
+
+.present12 {
+  width: 77px;
+  height: 77px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+  margin: 10px;
+}
+
+.present12 .virtical_ribbon, .present12 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present12 .cap {
+  background-color: #f24;
+}
+
+.present13 {
+  width: 79px;
+  height: 79px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(7deg);
+  -ms-transform: rotate(7deg);
+  transform: rotate(7deg);
+  margin: 10px;
+}
+
+.present13 .virtical_ribbon, .present13 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present13 .cap {
+  background-color: #f24;
+}
+
+.present14 {
+  width: 87px;
+  height: 87px;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  margin: 10px;
+}
+
+.present14 .virtical_ribbon, .present14 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present14 .cap {
+  background-color: #fff;
+}
+
+.present15 {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  background-color: #3364f7;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+  margin: 10px;
+}
+
+.present15 .virtical_ribbon, .present15 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present15 .cap {
+  background-color: #3364f7;
+}
+
+.present16 {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  margin: 10px;
+}
+
+.present16 .virtical_ribbon, .present16 .horizontal_ribbon {
+  background-color: #fff;
+}
+
+.present16 .cap {
+  background-color: #ffd221;
+}
+
+.present17 {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  margin: 10px;
+}
+
+.present17 .virtical_ribbon, .present17 .horizontal_ribbon {
+  background-color: #fff;
+}
+
+.present17 .cap {
+  background-color: #ffd221;
+}
+
+.present18 {
+  width: 72px;
+  height: 72px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(9deg);
+  -ms-transform: rotate(9deg);
+  transform: rotate(9deg);
+  margin: 10px;
+}
+
+.present18 .virtical_ribbon, .present18 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present18 .cap {
+  background-color: #c747ff;
+}
+
+.present19 {
+  width: 59px;
+  height: 59px;
+  position: relative;
+  background-color: #3364f7;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(7deg);
+  -ms-transform: rotate(7deg);
+  transform: rotate(7deg);
+  margin: 10px;
+}
+
+.present19 .virtical_ribbon, .present19 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present19 .cap {
+  background-color: #3364f7;
+}
+
+.present20 {
+  width: 61px;
+  height: 61px;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-4deg);
+  -ms-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+  margin: 10px;
+}
+
+.present20 .virtical_ribbon, .present20 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present20 .cap {
+  background-color: #fff;
+}
+
+.present21 {
+  width: 97px;
+  height: 97px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  margin: 10px;
+}
+
+.present21 .virtical_ribbon, .present21 .horizontal_ribbon {
+  background-color: #fff;
+}
+
+.present21 .cap {
+  background-color: #ffd221;
+}
+
+.present22 {
+  width: 67px;
+  height: 67px;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  margin: 10px;
+}
+
+.present22 .virtical_ribbon, .present22 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present22 .cap {
+  background-color: #fff;
+}
+
+.present23 {
+  width: 86px;
+  height: 86px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-5deg);
+  -ms-transform: rotate(-5deg);
+  transform: rotate(-5deg);
+  margin: 10px;
+}
+
+.present23 .virtical_ribbon, .present23 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present23 .cap {
+  background-color: #ffd221;
+}
+
+.present24 {
+  width: 52px;
+  height: 52px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(6deg);
+  -ms-transform: rotate(6deg);
+  transform: rotate(6deg);
+  margin: 10px;
+}
+
+.present24 .virtical_ribbon, .present24 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present24 .cap {
+  background-color: #ffd221;
+}
+
+.present25 {
+  width: 62px;
+  height: 62px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+  margin: 10px;
+}
+
+.present25 .virtical_ribbon, .present25 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present25 .cap {
+  background-color: #ffd221;
+}
+
+.present26 {
+  width: 87px;
+  height: 87px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+  margin: 10px;
+}
+
+.present26 .virtical_ribbon, .present26 .horizontal_ribbon {
+  background-color: #fff;
+}
+
+.present26 .cap {
+  background-color: #c747ff;
+}
+
+.present27 {
+  width: 94px;
+  height: 94px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  margin: 10px;
+}
+
+.present27 .virtical_ribbon, .present27 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present27 .cap {
+  background-color: #c747ff;
+}
+
+.present28 {
+  width: 51px;
+  height: 51px;
+  position: relative;
+  background-color: #3364f7;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+  margin: 10px;
+}
+
+.present28 .virtical_ribbon, .present28 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present28 .cap {
+  background-color: #3364f7;
+}
+
+.present29 {
+  width: 94px;
+  height: 94px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+  margin: 10px;
+}
+
+.present29 .virtical_ribbon, .present29 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present29 .cap {
+  background-color: #f24;
+}
+
+.present30 {
+  width: 91px;
+  height: 91px;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-8deg);
+  -ms-transform: rotate(-8deg);
+  transform: rotate(-8deg);
+  margin: 10px;
+}
+
+.present30 .virtical_ribbon, .present30 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present30 .cap {
+  background-color: #fff;
+}
+
+.present31 {
+  width: 95px;
+  height: 95px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-7deg);
+  -ms-transform: rotate(-7deg);
+  transform: rotate(-7deg);
+  margin: 10px;
+}
+
+.present31 .virtical_ribbon, .present31 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present31 .cap {
+  background-color: #ffd221;
+}
+
+.present32 {
+  width: 62px;
+  height: 62px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-4deg);
+  -ms-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+  margin: 10px;
+}
+
+.present32 .virtical_ribbon, .present32 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present32 .cap {
+  background-color: #f24;
+}
+
+.present33 {
+  width: 81px;
+  height: 81px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-7deg);
+  -ms-transform: rotate(-7deg);
+  transform: rotate(-7deg);
+  margin: 10px;
+}
+
+.present33 .virtical_ribbon, .present33 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present33 .cap {
+  background-color: #c747ff;
+}
+
+.present34 {
+  width: 51px;
+  height: 51px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(9deg);
+  -ms-transform: rotate(9deg);
+  transform: rotate(9deg);
+  margin: 10px;
+}
+
+.present34 .virtical_ribbon, .present34 .horizontal_ribbon {
+  background-color: #fff;
+}
+
+.present34 .cap {
+  background-color: #c747ff;
+}
+
+.present35 {
+  width: 66px;
+  height: 66px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  margin: 10px;
+}
+
+.present35 .virtical_ribbon, .present35 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present35 .cap {
+  background-color: #c747ff;
+}
+
+.present36 {
+  width: 55px;
+  height: 55px;
+  position: relative;
+  background-color: #3364f7;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(4deg);
+  -ms-transform: rotate(4deg);
+  transform: rotate(4deg);
+  margin: 10px;
+}
+
+.present36 .virtical_ribbon, .present36 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present36 .cap {
+  background-color: #3364f7;
+}
+
+.present37 {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(1deg);
+  -ms-transform: rotate(1deg);
+  transform: rotate(1deg);
+  margin: 10px;
+}
+
+.present37 .virtical_ribbon, .present37 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present37 .cap {
+  background-color: #ffd221;
+}
+
+.present38 {
+  width: 76px;
+  height: 76px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  margin: 10px;
+}
+
+.present38 .virtical_ribbon, .present38 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present38 .cap {
+  background-color: #c747ff;
+}
+
+.present39 {
+  width: 72px;
+  height: 72px;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+  margin: 10px;
+}
+
+.present39 .virtical_ribbon, .present39 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present39 .cap {
+  background-color: #fff;
+}
+
+.present40 {
+  width: 98px;
+  height: 98px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-4deg);
+  -ms-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+  margin: 10px;
+}
+
+.present40 .virtical_ribbon, .present40 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present40 .cap {
+  background-color: #f24;
+}
+
+.present41 {
+  width: 83px;
+  height: 83px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+  margin: 10px;
+}
+
+.present41 .virtical_ribbon, .present41 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present41 .cap {
+  background-color: #f24;
+}
+
+.present42 {
+  width: 91px;
+  height: 91px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-4deg);
+  -ms-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+  margin: 10px;
+}
+
+.present42 .virtical_ribbon, .present42 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present42 .cap {
+  background-color: #ffd221;
+}
+
+.present43 {
+  width: 94px;
+  height: 94px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+  margin: 10px;
+}
+
+.present43 .virtical_ribbon, .present43 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present43 .cap {
+  background-color: #f24;
+}
+
+.present44 {
+  width: 69px;
+  height: 69px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  transform: rotate(-1deg);
+  margin: 10px;
+}
+
+.present44 .virtical_ribbon, .present44 .horizontal_ribbon {
+  background-color: #c747ff;
+}
+
+.present44 .cap {
+  background-color: #ffd221;
+}
+
+.present45 {
+  width: 79px;
+  height: 79px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+  margin: 10px;
+}
+
+.present45 .virtical_ribbon, .present45 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present45 .cap {
+  background-color: #c747ff;
+}
+
+.present46 {
+  width: 61px;
+  height: 61px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+  margin: 10px;
+}
+
+.present46 .virtical_ribbon, .present46 .horizontal_ribbon {
+  background-color: #f24;
+}
+
+.present46 .cap {
+  background-color: #ffd221;
+}
+
+.present47 {
+  width: 66px;
+  height: 66px;
+  position: relative;
+  background-color: #ffd221;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(-6deg);
+  -ms-transform: rotate(-6deg);
+  transform: rotate(-6deg);
+  margin: 10px;
+}
+
+.present47 .virtical_ribbon, .present47 .horizontal_ribbon {
+  background-color: #ffd221;
+}
+
+.present47 .cap {
+  background-color: #ffd221;
+}
+
+.present48 {
+  width: 54px;
+  height: 54px;
+  position: relative;
+  background-color: #f24;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  margin: 10px;
+}
+
+.present48 .virtical_ribbon, .present48 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present48 .cap {
+  background-color: #f24;
+}
+
+.present49 {
+  width: 63px;
+  height: 63px;
+  position: relative;
+  background-color: #c747ff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(8deg);
+  -ms-transform: rotate(8deg);
+  transform: rotate(8deg);
+  margin: 10px;
+}
+
+.present49 .virtical_ribbon, .present49 .horizontal_ribbon {
+  background-color: #3364f7;
+}
+
+.present49 .cap {
+  background-color: #c747ff;
+}
+
+.present50 {
+  width: 76px;
+  height: 76px;
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  margin: 10px;
+}
+
+.present50 .virtical_ribbon, .present50 .horizontal_ribbon {
+  background-color: #fff;
+}
+
+.present50 .cap {
+  background-color: #fff;
+}
+
+/*# sourceMappingURL=style.css.map */

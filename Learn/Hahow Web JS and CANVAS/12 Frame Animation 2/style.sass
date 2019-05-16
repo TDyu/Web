@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/* =size 是 @mixin size 的簡寫 */
+=size($width, $height:$width)
+	width: $width
+	height: $height
+
+@keyframes ballAni
+	0%
+		transform: translateX(0px)
+	50%
+		+size(50px)
+	100%
+		transform: translateX(200px)
+		background-color: red
+
+html, body
+	+size(100%)
+	background-color: #222
+	display: flex
+	justify-content: center
+	align-items: center
+
+.middle
+	position: relative // 讓球根據middel做定位 (順便一提 因為外面html, body指定置中 所以這樣middle就是置中 隨著設定好定位 那球也在中間)
+
+.ball
+	+size(20px)
+	background-color: #FFF
+	border-radius: 50%
+	position: absolute // 讓原始狀態時全部重疊 (因為absolute需要指定位置)
+	animation: ballAni 2s infinite alternate
+
+// 透過改變外面的container來讓球都往不同跑(因為坐標系不同)
+@for $i from 1 through 30
+	.container#{$i}
+		transform: rotate(#{$i * 360/30}deg)
+		.ball // 要寫在container裡面 才會各自只負責自己這顆球
+			animation-delay: -$i * 0.1s

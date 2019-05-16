@@ -1,0 +1,34 @@
+// !!! peggyloveslearning.blogspot.tw/2017/04/sublime-text-3-sass-css.html
+// github.com/rubygems/rubygems/issues/515
+// www.jianshu.com/p/edf9a3abf090
+// www.w3cplus.com/sassguide/syntax.html 
+
+// 透過縮排決定哪個屬性屬於哪個選擇器
+.title
+	font-size: 50px
+	
+	// sass最爽的體驗部份要來了
+	// 把.smallText寫在.title的下層
+	// 編譯出來就會像是之前還要另外在寫一個.title .smallText
+	.smallText
+		font-size: 20px
+		&:hover
+			color: red
+
+	// 用&代表母層級的東西
+	// 也就是寫出來等於 .title.smallText 同時選取
+	&.smallText
+	// .title:hover
+	&:hover
+		color: blue
+
+.top
+	.name
+		position: absolute
+		margin: 0
+		left: 0
+		bottom: 0
+		padding: 5px 15px
+		letter-spacing: 2px
+
+		.smallText

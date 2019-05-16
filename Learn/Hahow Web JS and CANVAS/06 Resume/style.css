@@ -1,0 +1,262 @@
+* {
+	/*border: solid 1px black;*/
+	font-family: "微軟正黑體", sans-serif;
+}
+
+/* 整體/常用(特別想調的地方再調就好)可以設定在body 因為下面沒有設定的話 它就會一層層往祖先找然後繼承下來 */
+body { /* 用body比html好 要不html往內擠 body還是會貼在周圍 指定底色看來會奇怪 */
+	padding: 50px;
+	background-color: #46d6c0;
+	color: rgba(255, 255, 255, 0.95);
+	font-size: 15px;
+	line-height: 28px;
+	letter-spacing: 1px; /* 中文字的筆劃較多看起來較雜 實際體驗上應該要比英文多點字距 */
+	/* 讓它無論怎麼縮放都置中 */
+	display: flex;
+	justify-content: center;
+}
+
+ul {
+	padding: 0;
+	list-style: none; /* 不要圈圈 */
+}
+
+h2 {
+	margin: 0;
+	margin-bottom: 25px;
+	font-weight: 400;
+}
+
+/*
+每個元素都有預設的before和after虛擬元素
+分別在html裡的最前最後
+長這樣:
+<啥>
+  ::before
+  <p>幹啥呀</p>
+  ::after
+</啥>
+常利用此技巧來加符號(標$) 或 做為一個圖像元素來處理
+
+ */
+h2::after {
+	content: ""; /*一定要指定content才會顯示 這裡因為不顯示字 但也要給 */
+	/* 雖然原本每個div預設都是display: block;然後不用特別寫 但是這裡before after本身預設就是沒有形體的 所以如果要用block也是要特別寫 讓他可以顯示出來 並且要設置不知道是block系列還是display都可以才調整寬高 */
+	display: inline-block; /* 讓他能跟在前一個元素後面 要不會像div一樣往下排 */ 
+	width: 20px;
+	height: 8px;
+	background-color: #FF7168;
+	margin-left: 10px;
+}
+
+h4 {
+	margin: 0;
+	margin-top: 40px;
+	opacity: 0.8; /* 透明度 */
+	font-weight: 400; /* 白色會有膨脹效應 所以可以適當調一下粗細 讓他清楚一點 */
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+hr {
+	border: none;
+	border-bottom: solid 4px #FF7168;
+	width: 40%;
+	margin-left: 0; /* 因為hr會自動調整兩邊外距來置中 如果要左靠就是讓左邊為0 */
+}
+
+.resume {
+	display: flex; /* 強制塞同行 */
+	max-width: 950px; /* 防止網頁擴大時內容跟著被拉開的噁心情況 */
+	border: solid 8px white;
+	padding: 50px;
+	position: relative; /* 讓裡面元素可以定位 */
+}
+
+.left {
+	flex: 5; /* 比例 */
+	padding-right: 50px;
+	border-right: solid 1px #FF7168; /* 只接利用邊線做分隔線 可以省去其他調間距和高度範圍的對齊麻煩事 */
+}
+
+.right {
+	flex: 7; /* 比例 */
+	padding-left: 50px;
+	padding-top: 150px; /* 和右上方那個裝飾的錯開 */
+}
+
+.left .right {
+	padding: 15px;
+}
+
+.decoration {
+	width: 300px;
+	height: 140px;
+	background: linear-gradient(135deg, #FF5F5F, #FFFFAE); /* 角度(加了deg應該就是"度"了) 從哪個顏色 到哪個顏色 */
+	border-radius: 70px 0px 0px 70px; /* 因為只有左上和左下要圓角 右邊是要貼著邊框 所以要一個個指定圓角 */
+	position: absolute;
+	right: 0;
+	top: 50px;
+}
+
+.listExperience > li {
+	display: flex; /* 為了讓裡面的強制同行 */
+	margin-bottom: 10px;
+}
+
+/* x:nth-child(1) 指定選取parent的第幾個為x的孩子(1開始)
+   .listExperience > li:nth-child(1) ul 就是.listExperience 之下一層 的 第一個li 的ul
+ */
+.listExperience > li:nth-child(1) ul {
+	border-color: #FF7168;
+}
+.listExperience > li:nth-child(2) ul {
+	border-color: #FFA582;
+}
+.listExperience > li:nth-child(3) ul {
+	border-color: #FFB087;
+}
+
+.listExperience li ul {
+	padding-left: 10px; /* 內距 為了隔開文字和邊線(同內部) */
+	border-left: solid 4px white;
+	margin-left: 10px; /* 外距 為了隔開邊線和年份(在外不部) */
+}
+
+.listSkill {
+	display: flex; /* 先是同一行 */
+	flex-wrap: wrap; /* 再讓它自己隨時機換行 */
+	/*justify-content: space-between;*/
+}
+
+/* 並沒有解決字會疊在一起的問題 */
+.listSkill li {
+	width: 25%; /* 指定寬度 讓他先有一樣間隔排 但是字可能疊在一起 */
+	padding: 5px; /* 拉寬間隔 但是這個padding會是算在本體寬度之外再加上去 所以會擠壓東西 */
+	box-sizing: border-box; /* 讓內外距都包含在寬度設定裡頭 */
+	/* 置中排列 */
+	display: flex; /* 為了置中設這個 但這時會連圖和字都左向右排開 */
+	flex-direction: column; /* 為了把圖和字變回上下排 */
+	align-items: center; /* 因為上面把主軸變成垂直線 所以要左右置中就變成調副軸 */
+	/* 以上flex是針對元素排列 但是這裡內填的字還是靠左排 因為字有自己的排列 所以還要以下調整 */
+	text-align: center;
+}
+
+/* 採用一層層方塊和圓型疊蓋上去 再消掉凸出去的部分和調顏色的方法 來刻出圓餅圖 */
+.circle {
+	width: 50px;
+	height: 50px;
+	/*background-color: #fff; 定位置用*/
+	border-radius: 50%;
+	position: relative; /* 要讓疊在上面的東西可以定位 */
+	overflow: hidden; /* 消掉用來製作圓餅圖概率的覆蓋方塊 凸出去的地方 */
+	background-color: rgba(255, 113, 104, 0.4);
+}
+
+/* 蓋上去的圓圈 要讓整個圓餅圖看起來是虛心圓的那層 */
+.circle::after{
+	content: "";
+	display: block; /* 讓可以調寬高 */
+	background-color: #46d6c0;
+	border-radius: 50%;
+	width: calc(100% - 20px); /* 要使其進度條是10px 就要計算左右共20px 這裡面的圈就要整體減掉20px */
+	height: calc(100% - 20px); /* 要使其進度條是10px 就要計算左右共20px 這裡面的圈就要整體減掉20px */
+	position: relative; /* 因為要提高它的優先度(因為要蓋在上面) 所以要設定relative的才能設定優先度 */
+	left: 50%; /* 讓左上角對準圓心(方便transform((吧))) */
+	top: 50%; /* 讓左上角對準圓心(方便transform((吧))) */
+	transform: translate(-50%, -50%); /* 讓變成同心圓 */
+}
+
+.p90, .p180, .p270, .p360 {
+	width: 50%;
+	height: 50%;
+	position: absolute;
+	background-color: #FF7168;
+}
+
+/* 佔右上圓四分之一 */
+.p90 {
+	left: 50%;
+	top: 0;
+}
+
+.p180 {
+	left: 50%;
+	top: 50%;
+}
+
+.p270 {
+	top: 50%;
+	left: 0;
+}
+
+.p360 {
+	left: 0;
+	top: 0;
+}
+
+.listProgram .bar {
+	width: 150px;
+	height: 10px;
+	border: solid 2px #FF7168;
+	border-radius: 5px;
+}
+
+.listProgram li {
+	padding-top: 10px;
+	display: flex;
+	justify-content: space-between; /* 只給文和條之間留空 在透過固定整條的寬 來防止拉縮時跑掉 */
+	align-items: center; /* 對齊文和條 */
+}
+
+.value {
+	height: 100%; /* 高度撐滿整個bar */
+	background-color: #FF7168;
+}
+
+/* 以下可以先建出每個10%的樣子 然要再去html加上要的等級 */
+/* 同時value和px的話 中間不能是空格 (空格代表value
+裡面"的px) */
+.value.p10 {
+	width: 10%; /* 利用寬度當數值的表現 */
+}
+.value.p20 {
+	width: 20%; /* 利用寬度當數值的表現 */
+}
+.value.p30 {
+	width: 30%; /* 利用寬度當數值的表現 */
+}
+.value.p40 {
+	width: 40%; /* 利用寬度當數值的表現 */
+}
+.value.p50 {
+	width: 50%; /* 利用寬度當數值的表現 */
+}
+.value.p60 {
+	width: 60%; /* 利用寬度當數值的表現 */
+}
+.value.p70 {
+	width: 70%; /* 利用寬度當數值的表現 */
+}
+.value.p80 {
+	width: 80%; /* 利用寬度當數值的表現 */
+}
+.value.p9x { /* 用p90一直和別的撞到 所以我就改了名字... */
+	width: 90%; /* 利用寬度當數值的表現 */
+}
+.value.p100 {
+	width: 100%; /* 利用寬度當數值的表現 */
+}
+
+.btn {
+	border: solid 3px #FF7168;
+	padding: 5px 20px;
+	margin-right: 10px;
+}
+
+.fill {
+	background-color: #FF7168;
+}

@@ -1,0 +1,141 @@
+* {
+	/*border: solid 2px black;*/
+}
+
+html, body {
+	background-color: #00BEA4;
+	font-size: 14px;
+	/* 置中 */
+	width: 100%;
+	height: 100%;
+	margin: 0; /* 拿掉body和html的莫名其怪間隔 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+a {
+	/* 因為我們要自己設計按鈕 所以要改掉超連結的預設 */
+	color: initial; /* 回復到原始顏色 就是不要有超連結的藍色 */
+	text-decoration: initial; /* 不要吃到預設的超連結文字樣式(例如底線) */
+}
+
+.box {
+	width: 380px;
+	background-color: #fff;
+	box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.3); /* 陰影 左右偏移 上下偏移 模糊程度 顏色 */
+	transition: 0.5s; /* 這裡也設置 就是移開也有緩衝效果了 */
+}
+
+/* 設定滑鼠移進去有浮起來的效果 */
+/* :hover 我猜是繼承的意思 因為這個是滑鼠移進去時會被套用hover這個class 以下要定義滑鼠碰到時的改變 */
+/* 原來是個選擇器... http://www.w3school.com.cn/cssref/selector_hover.asp */
+.box:hover {
+	box-shadow: 5px 5px 60px rgba(0, 0, 0, 0.4);
+	transform: translate(-5px, -5px); /* 移動: 相對現在的轉移(左右(這裡-5就是往左5), 上下(這裡-5就是往上5)); */
+	/* transform還有其他好玩的 例如scale、旋轉 */
+	transition: 0.5s; /* 給漸變時間 讓它看起來比較自然 */
+}
+
+.top {
+	height: 330px; /* 為了放照片所以要撐開一個高度 */
+	position: relative; /* 為了要給name做絕對定位 所以這個容器要是可以定位的 */
+	background-image: url(http://wx4.sinaimg.cn/mw690/005Krhyzgy1fjh6rn2wjbj30j60eeaay.jpg);
+	background-size: cover;
+	background-position: 50%;
+}
+
+.top .name {
+	color: white;
+	font-weight: 300; /* 變細 */
+	/*background-color: rgba(0, 0, 0, 0.1); /* rga(r, g, b)  rgba的a就是透明度 */
+	background: linear-gradient(transparent 0%, black 100%); /* 線性漸層(從透明0%, 到黑色100%) */
+	/* 絕對定位 */
+	position: absolute; /* 此時預設的display: block;就失效了 所以左右不會滿(要滿要自己加) */
+	left: 0;
+	bottom: 0; /* 但是會發現下方還是有個奇怪的距離 那是h2預設的外距 */
+	margin: 0; /* 拿掉h2預設的margin */
+	/* 間距 */
+	padding: 5px 15px;
+	letter-spacing: 2px; /* 字距 */
+	/* 為了讓漸層多一點空間比較好看 */
+	padding-top: 30px;
+	padding-bottom: 15px;
+	/* 為了左右撐滿 */
+	width: 100%; /* 但是因為有加padding把元素撐大了 所以就是在原本的寬度又加上那些空格 */
+	box-sizing: border-box; /* 就讓padding乖乖被鎖在裡面 整體加起來100% */
+}
+
+.top .name .smallText {
+	font-size: 14px;
+}
+
+.top .tag {
+	width: 25px;
+	height: 50px;
+	background-color: #00BEA4;
+	float: right; /* 或是可以用absolute來做浮在右邊的效果 但是要注意的是float還有在排版內所以可以用margin這些 但是absolute就不可以了 */
+	margin-right: 20px; /* 因為 */
+}
+
+.cirButton {
+	width: 50px;
+	height: 50px;
+	background-color: #00BEA4;
+	border-radius: 50%; /* 圓形: 可以直接給一半寬度px(這裡就是25px)  或是50%(就是一半寬度拿來做圓角 四個圓角就拼成圓形)*/
+	/* 絕對定位 */
+	position: absolute;
+	right: 30px;
+	bottom: -20px; /* 也就變成靠近它跑 跑到出去了 */
+}
+
+.information {
+	padding: 10px 20px 20px 20px; /* 從左上角(電腦所有元素基準點都是左上)開始繞 左上右上右下左下 */
+}
+
+.information li {
+	padding: 5px 0px;
+}
+
+.information ul {
+	list-style: none; /* 不要原本黑點點的清單樣式 */
+	padding-left: 0; /* 拿掉這個清單的大框框和裡面列點的預設左邊內距 */
+}
+
+.information h3 {
+	display: inline-block; /* 讓列點的標題和內容在同一行(指定h3所以和同層級的東西同一行) */
+	margin: 0; /* 拿掉列點的預設間距 */
+}
+
+.buttons {
+	margin-top: 30px;
+}
+
+.buttons .btn {
+	display: inline-block; /* 讓兩個按鈕在同一行 */
+	padding: 10px 25px;
+	letter-spacing: 2px;
+}
+
+.btnBilibili {
+	float: right;
+	background-color: #24B3EC;
+	transition: 0.5s;
+}
+
+.btnBilibili:hover {
+	float: right;
+	background-color: #9BD8F7;
+	transition: 0.5s;
+}
+
+.btnWeibo {
+	background-color: #E6172E;
+	transition: 0.5s;
+}
+
+/* 設定滑鼠碰到時有微亮的效果 */
+.btnWeibo:hover{
+	background-color: #ea7c87; /* 可以用我們Chrom裝的那個顏色選擇 先選這個顏色 再用color picker挑亮一點的顏色 */
+	transition: 0.5s;
+}

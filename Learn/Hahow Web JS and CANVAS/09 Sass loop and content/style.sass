@@ -1,0 +1,102 @@
+// Sass有控制與邏輯觀念
+// 短短幾行 等等你可以看 會產生超多行的css
+@charset "UTF-8";
+
+*
+	// border: solid 1px black
+
+html, body
+	width: 100%
+	height: 100%
+	background-color: #222
+	margin: 0
+	display: flex
+	flex-wrap: wrap // 換行
+
+.virtical_ribbon, .horizontal_ribbon // 一起指定
+	/* x位移 y位移 陰影擴散範圍 顏色(在css一定要指定rgb數值, 這裡有經過函數包裝 可以直接填顏色) */
+	box-shadow: 0px 0px 20px rgba(black, 0.5)
+.virtical_ribbon
+	width: 15%
+	height: 100%
+	position: absolute
+	left: 50%
+	top: 0
+	/* 轉變 移動X 回來自己的左邊一半寬 因為對齊是用元素左上角來對 經過上面的left後 應該是左邊線對齊中間了 並不是整個緞帶的中間對中間 */
+	transform: translateX(-50%)
+.horizontal_ribbon
+	width: 100%
+	height: 15%
+	position: absolute
+	left: 0
+	top: 50%
+	transform: translateY(-50%)
+.cap
+	height: 15%
+	/* calc 是css就有的屬性。 100%的寬度再外加10px 但是這裡是左對齊 不像之前用這個時是置中對齊才會平均兩邊長 所以等等要再移回來 */
+	width: calc(100% + 10px)
+	position: absolute
+	left: 0
+	top: 0
+	/* 剛剛多出去10px 拆一半回來 */
+	transform: translateX(-5px)
+	box-shadow: 0px 0px 20px rgba(black, 0.5)
+
+// 模組化 (class的感覺)
+// mixin裡面盡量不要有一樣的屬性設定
+// 把很多東西拆出去(寫在上面)只留下會需要用到變數的 
+// 因為那些東西都是一樣的 一次定義全部就好 你如果用動態產生 就每次都設定一次全部 有害效率
+// 另一方面不抽出去 每次重複產生css 那css也真的太長 也不並要了
+@mixin present ($size:100px, $bodyColor:#ff5151, $ribbonColor:#fff, $rotateDeg:0deg)
+	// // 像宣告local variables一樣
+	// $size: 100px
+	// $rotateDeg: 5deg // 旋轉角度
+	// $bodyColor: #ff5151
+	// $ribbonColor: #fff
+
+	width: $size
+	height: $size
+	position: relative // 為了給裡面的東西做定位
+	background-color: $bodyColor
+	box-shadow: 0px 0px 20px rgba(black, 0.5)
+	transform: rotate($rotateDeg) // 整個旋轉
+	margin: 10px
+	
+	.virtical_ribbon, .horizontal_ribbon // 一起指定
+		background-color: $ribbonColor
+	.cap
+		background-color: $bodyColor
+
+// 常用顏色array
+// sass裡面的array是用(x,y,...)
+// 從0開始((應該...
+$colorRed: #f24
+$colorWhite: #fff
+$colorBlue: #3364f7
+$colorYellow: #ffd221
+$colorPurple: #c747ff
+$colors: ($colorRed, $colorWhite, $colorBlue, $colorYellow, $colorPurple)
+
+.present
+	+present
+
+// 用for產生禮物盒
+// @for $迴圈變數 from x through y
+// 範圍是[x, y]的
+@for $i from 1 through 50
+	// random(x)範圍是 [0,x) ((吧...
+	$size: random(50) + 50
+	$rotateDeg: random(20) - 10
+	// nth(選取範圍物, 第幾個) 是選一群東西當中第幾個的函數
+	$bodyColor: nth($colors, random(5))
+	$ribbonColor: nth($colors, random(5))
+
+	// 如果兩個相等顏色就重新產生緞帶顏色
+	// @if 邏輯式 (可括號可不括)
+	@if $bodyColor == $ribbonColor
+		$ribbonColor: nth($colors, random(5))
+
+	// 因為$i是數字 所以不能直接用
+	// 要先用前計算"#{也就是可以看成這裡面的數值會被轉成字串}"
+	.present#{$i}
+		+present(#{$size}px, $bodyColor, $ribbonColor, #{$rotateDeg}deg)

@@ -1,0 +1,272 @@
+@charset "UTF-8";
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.scene {
+  width: 600px;
+  height: 500px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #307BE1;
+  position: relative;
+}
+
+.scene .title {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  margin: 0;
+  font-size: 50px;
+  color: white;
+  opacity: 0;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.scene .title .question {
+  font-size: 35px;
+  color: #FFC12C;
+  margin: 0;
+  /* none連出現都不會出現 */
+  display: none;
+}
+
+.person {
+  position: relative;
+}
+
+.person .message {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  left: -200px;
+  top: 50px;
+  opacity: 0;
+}
+
+.person .hairs {
+  position: relative;
+}
+
+.person .hairs .hair1 {
+  width: 150px;
+  height: 80px;
+  border-radius: 40px;
+  background-color: white;
+  -webkit-box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+}
+
+.person .hairs .hair2 {
+  width: 150px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: white;
+  -webkit-box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1);
+  margin-left: 50px;
+  margin-top: -40px;
+}
+
+.person .hairs .hair3 {
+  width: 150px;
+  height: 70px;
+  border-radius: 35px;
+  background-color: white;
+  -webkit-box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1);
+  margin-left: 5px;
+  margin-top: -45px;
+}
+
+.face {
+  width: 210px;
+  height: 120px;
+  border-radius: 40px;
+  padding-top: 50px;
+  margin-top: -40px;
+  background-color: #FFC12C;
+  -webkit-box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.face .eyes .eye {
+  width: 50px;
+  height: 25px;
+  border-radius: 12.5px;
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 15px;
+  background-color: white;
+}
+
+.face .eyes .eye .eyeball {
+  width: 25px;
+  height: 25px;
+  border-radius: 12.5px;
+  background-color: #2F4A6E;
+}
+
+.face .mouth {
+  width: 70px;
+  height: 25px;
+  border-radius: 12.5px;
+  background-color: #F38A0C;
+  margin-top: 15px;
+  margin-left: 70px;
+}
+
+.face .mouth .food {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  margin-left: -40px;
+  background-color: #F38A0C;
+}
+
+/* 管hover區 其實也可以直接寫在.scence裡面用多層級&:hover 但是這裡要做的調整有點多 所以額外拿出來當一塊 比較清楚 */
+.scene:hover .person {
+  margin-top: 50px;
+  /* 讓第三根頭髮左間距變0 會讓人物比較有留在原地的錯覺 */
+  /* 整個scene被移入情況下(所以寫在這.scene:hover裡面) 更進一步滑鼠指到人物時(要多一個.person:hover) "臉"外面的陰影要變動左邊
+			這時可使用多層級 就是寫&:hover在person裡面
+			這個& 也就是person被帶入 */
+}
+
+.scene:hover .person .hairs .hair3 {
+  margin-left: 0px;
+}
+
+.scene:hover .person .face {
+  /* 這裡要給兩組陰影 一組是原本臉裡面的 後面一組是給hover時外面一層陰影 */
+  -webkit-box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1), 30px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1), 30px 10px rgba(0, 0, 0, 0.1);
+}
+
+.scene:hover .person:hover {
+  -webkit-transform: translateX(40px);
+  -ms-transform: translateX(40px);
+  transform: translateX(40px);
+}
+
+.scene:hover .person:hover .message {
+  opacity: 1;
+}
+
+.scene:hover .person:hover .face {
+  -webkit-box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1), -30px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: inset -10px -10px 0px rgba(0, 0, 0, 0.1), -30px 10px rgba(0, 0, 0, 0.1);
+  background-color: #F38A0C;
+}
+
+.scene:hover .person:hover .eyes {
+  -webkit-transform: translateX(30px);
+  -ms-transform: translateX(30px);
+  transform: translateX(30px);
+}
+
+.scene:hover .person:hover .eyeball {
+  -webkit-transform: translateX(25px);
+  -ms-transform: translateX(25px);
+  transform: translateX(25px);
+}
+
+.scene:hover .person:hover .mouth {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+.scene:hover .person:hover .mouth:hover {
+  -webkit-transform: translateX(40px);
+  -ms-transform: translateX(40px);
+  transform: translateX(40px);
+}
+
+.scene:hover .title {
+  opacity: 1;
+}
+
+/* 管漸變區 (也可以直接寫在裡面 只是統一抽出來管比較清楚)
+ 	(我猜的:) 另外直接設定在例如.scene下面的話 剛剛的hover的部份也會有延遲 因為:hover是套一個屬性進去 所以還是scene管的人 */
+.scene .title {
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.person {
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  /* "*"代表所有, 寫在person裡面 代表person裡面每個都有漸變效果 */
+}
+
+.person .message {
+  -webkit-transition-delay: 0.5s;
+  -o-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+
+.person .face {
+  /* 分別兩種延遲 一個是整個臉 一個是指定臉色的部份比較長 而且有1s的delay(1s不會變化的時間 然後再做4s秒的漸變) */
+  -webkit-transition: 0.5s, background-color 4s 1s;
+  -o-transition: 0.5s, background-color 4s 1s;
+  transition: 0.5s, background-color 4s 1s;
+}
+
+.person * {
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+/* 按下去的事件 */
+.scene:hover:active .question {
+  display: block;
+}
+
+.scene:hover:active .person {
+  /* scale 縮放 */
+  -webkit-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  transform: scale(0.9);
+  /* 這裡因為是active裡面事件的事了 所以如果要人物hover時也要變小 就要再定義
+			或是直接.scene:hover再:active 這樣就會再繼承.scene:hover的基礎上再做active的事件 */
+}
+
+.scene:hover:active .person .hairs {
+  -webkit-transform: translateY(-25px);
+  -ms-transform: translateY(-25px);
+  transform: translateY(-25px);
+}
+
+/*# sourceMappingURL=style.css.map */
