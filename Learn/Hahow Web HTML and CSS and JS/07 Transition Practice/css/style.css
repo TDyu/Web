@@ -1,0 +1,108 @@
+@charset "UTF-8";
+body {
+  background-color: #333;
+}
+
+.cross {
+  border: solid 2px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  background-color: #FFD52B;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  /* 鼠標: 鼠標變成可以點擊變話的類型(一隻手那個) */
+  cursor: pointer;
+}
+
+.cross .line1, .cross .line2 {
+  width: 150px;
+  height: 10px;
+  background-color: white;
+  position: absolute;
+  /* 置中 */
+  top: 50%;
+  left: 50%;
+  /* transform: translate(-50%, -50%) 或是translateX(-50%) translateY(-50%) 移動回來對中間(解釋太多次了 不說為啥了 忘了自己回去翻...) */
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.cross .line1 {
+  /* 經嘗試 個別調整的權限大於一起調整的 所以這裡設定的trnsform會蓋掉一起設定的transform 所以不能先一起設X然後在個別定Y */
+  -webkit-transform: translate(-50%, 200%);
+  -ms-transform: translate(-50%, 200%);
+  transform: translate(-50%, 200%);
+}
+
+.cross .line2 {
+  -webkit-transform: translate(-50%, -200%);
+  -ms-transform: translate(-50%, -200%);
+  transform: translate(-50%, -200%);
+}
+
+.cross:hover {
+  background-color: #E84B17;
+}
+
+.cross:hover .line1, .cross:hover .lin2 {
+  /* 變xx時 視覺上感覺像被壓縮了, 所以這裡增加一點寬度, 讓他整個量體的感覺是一樣的 */
+  /* 或是在transform裡面多加scaleX 放大X的部分 看起來更平衡 (至少比直接加寬度自然 我覺得...) */
+}
+
+.cross:hover .line1 {
+  /* 旋轉(弧度 或是加上deg變角度) */
+  /* 其他置中設定依然要寫著要不會跑掉 */
+  -webkit-transform: translate(-50%, -50%) rotate(45deg) scaleX(1.2);
+  -ms-transform: translate(-50%, -50%) rotate(45deg) scaleX(1.2);
+  transform: translate(-50%, -50%) rotate(45deg) scaleX(1.2);
+}
+
+.cross:hover .line2 {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg) scaleX(1.2);
+  -ms-transform: translate(-50%, -50%) rotate(-45deg) scaleX(1.2);
+  transform: translate(-50%, -50%) rotate(-45deg) scaleX(1.2);
+}
+
+.block {
+  border: solid 2px #eee;
+  width: 300;
+  height: 300px;
+  padding: 20px;
+  font-family: 微軟正黑體;
+  /* 滑鼠懸浮事件hover */
+}
+
+.block h1, .block p {
+  /* 預設透明度是0 */
+  opacity: 0;
+  /* 變化過程時間 */
+  /* 或是 transition: 第一個位置的參數 */
+  /* 直接寫在這個元素, 就是不管要進入一個事件還是退回來原來的模樣, 都會0.5 */
+  /* 如果只寫在hover裡面, 就只有進入那個事件才會有效果, 退出來就不干他的事了當然沒效果 */
+  /* 或是要兩邊都寫疊加秒數也行 */
+  /* 一定要加在這個元素上, 加在父容器是沒用的 */
+  -webkit-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  color: white;
+  position: relative;
+  top: 20px;
+}
+
+.block p {
+  /* 延遲時間(過完這段時間再開始變化) */
+  /* 或是 transition: td 預設第二個參數(預設0s) */
+  -webkit-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.block:hover h1, .block:hover p {
+  opacity: 1;
+  top: 0px;
+}
+
+/*# sourceMappingURL=style.css.map */

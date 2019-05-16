@@ -1,0 +1,74 @@
+@charset "UTF-8";
+* {
+  background-color: white;
+  font-family: 微軟正黑體;
+}
+
+html, body {
+  background-color: #333;
+}
+
+div {
+  border: solid 2px black;
+  width: 150px;
+  height: 50px;
+  padding: 20px;
+  margin: 20px;
+  color: white;
+  background-color: transparent;
+  /**
+	 * CSS偽元素 before after
+	 * 用 :: 來選擇
+	 * 預設在元素裡的元素
+	 * 但預設看不到
+	 * 至少要填content才會出現 content: "" 也行 反正就是要寫
+	 * 可以用這個抓html裡面data-*屬性資料
+	 * attr(data-*) 那html宣告預設值為甚麼 這裡就會抓到那個"字串"
+	 * 參考資料:
+	 * http://muki.tw/tech/pure-css-tooltip-data-tag/
+	 * https://pjchender.blogspot.tw/2017/01/html-5-data-attribute.html
+	 *
+	 * content value是字串像串字串一樣 可以寫你要的字串(用""或是''都可以) 字串彼此即使空格也會當成沒有空格
+	 * 也就是加上資料內容不是html專利 css也可以用偽元素做到
+	 *
+	 * 這樣的合作方法做常用的就是在偽元素寫$ html裡的文字填價格 之類的
+	 */
+}
+
+div::before {
+  content: "(" attr(data-size) ")";
+}
+
+div::after {
+  content: "(" attr(data-color) ")";
+}
+
+/* css指定選取屬性跟emmet一樣是用[] */
+div[data-size="small"] {
+  width: 150px;
+  height: 50px;
+}
+
+div[data-size="medium"] {
+  width: 250px;
+  height: 70px;
+}
+
+div[data-size="big"] {
+  width: 350px;
+  height: 90px;
+}
+
+div[data-color="red"] {
+  border-color: #FC216E;
+}
+
+div[data-color="green"] {
+  border-color: #216EFC;
+}
+
+div[data-color="blue"] {
+  border-color: #27C42D;
+}
+
+/*# sourceMappingURL=style.css.map */

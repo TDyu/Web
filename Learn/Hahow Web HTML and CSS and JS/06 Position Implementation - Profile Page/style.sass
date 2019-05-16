@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+=size($width, $height)
+	width: $width
+	height: $height
+
+*
+	// border: solid 2px
+	font-family: 微軟正黑體
+	position: relative
+
+html, body
+	background-color: #eee
+	+size(100%, 100%)
+	padding: 0
+	margin: 0
+
+.phone
+	width: 240px
+	margin-left: auto
+	margin-right: auto
+	margin-top: 200px
+	border: solid 1px #999
+	border-radius: 5px
+	background-color: #FFF
+
+	.top
+		+size(100%, 150px)
+		background-color: #555
+		background-image: url("")
+		background-size: over /* 如果不滿 就擴到滿容器 */
+		background-position: 50% 50% /* 圖片中央 */
+
+	.head_pic
+		+size(80px, 80px)
+		position: absolute
+		top: -40px
+		left: 20px
+		border-color: #999
+		background-image: url("")
+		background-size: cover
+
+		.name
+			color: white
+			position: relative // 雖然在*已把所有元素預設為relative了 但是由於這個的父容器設成absolute了 所以他還要寫一次(?)
+			right: -95px // 依據原位置"距離"
+			top: 10px
+
+	.bottom
+		+size(100%, 200px)
+

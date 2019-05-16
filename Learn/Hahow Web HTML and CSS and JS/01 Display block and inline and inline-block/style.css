@@ -1,0 +1,108 @@
+/**
+ * block: 預設值, 一個個tag被往下排, 有明顯預設的外距值
+ *        用了框線會看到, 一個元素會被盡量撐滿整個容器
+ * inline: 排成一排, 像打文章一樣, 只在乎這行有啥, 沒有明顯預設上外距值. 所以只能左右調整(例如外距), 上下的調整會動不了
+ *          用了框線會看到, 大小緊緊包著內部元素然後被撐開, 因為上外距沒有大的預設所以感覺貼在父容器邊界
+ * inline-block: 也是被排成一排, 但是還是分一個tag一block的感覺, 上下左右皆能調
+ *          用了框線會看到, 和inline一樣大小緊緊包著內部元素然後被撐開, 但明顯上外距變大
+ */
+
+
+* {
+  font-family: 微軟正黑體;
+  border: solid 2px black;
+}
+
+/**
+ * 預設值
+ * 每個元素往下排
+ * 每個元素盡量左右撐滿
+ * 所以列點或自動加上前面的圓圈符號
+ * 父容器ul的部份跟著擴開到裡面因為li設定的padding而撐出的整個高度
+ * 有較大上下外距(初步試驗無法拿掉)
+ */
+.blockDemo .button{
+  /*display: block; 預設值 */
+  padding: 0px;
+  
+  /* 撐內距 */
+  padding: 10px; 
+  /* 左右多點 */
+  padding-left: 30px; /* 本來這裡是沒差(看下一個)  只是ul有預設一格圈圈列點的在文字外面(屬ul), 所以還是能看到差距 
+  /*padding-right: 30px;  這裡是沒差的, 因為block預設就是左右撐滿, 而這裡又沒有貼右邊得元素, 只有純背景色, 所以雖然內距變大 看來還是沒差 */
+
+  background-color: #26C9A3;
+  
+  border-bottom: solid 7px #2FEDC1;
+  
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  
+}
+
+/**
+ * 每個元素排成一列
+ * 所以列點的圓圈符號自動消失
+ * 父容器ul的部份  並不會  跟著擴開到裡面因為li設定的padding而撐出的整個高度 看起來一條寬線上下置中在li之下
+ * 預設有較小上外距, 下外距幾乎看不到
+ * 所以上下調整外距無效(我猜是排版系統就規定他這麼寬?), 左右調整外具有效
+ */
+.inlineDemo .button{
+  display: inline;
+  
+  /* 上下調整外距"無效" */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* 左右調整外距"有效" */
+  margin-left: 10px;
+  margin-right: 10px;
+
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #26C9A3;
+  
+  border-bottom: solid 7px #2FEDC1;
+  
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  
+}
+
+/**
+ * 每個元素排成一列
+ * 所以列點的圓圈符號自動消失
+ * 父容器ul的部份跟著擴開到裡面因為li設定的padding而撐出的整個高度
+ * 有較大上下外距(初步試驗無法拿掉)
+ * 上下調整外距"有效" 左右調整外距"有效"
+ * 再因為block的父容器自動拓開, 所以外面ul也撐成加上外距的高
+ */
+.inline-blockDemo .button{
+  display: inline-block;
+  
+  /* 上下調整外距"有效" */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  /* 左右調整外距"有效" */
+  margin-left: 10px;
+  margin-right: 10px;
+
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #26C9A3;
+  
+  border-bottom: solid 7px #2FEDC1; 
+  
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  
+}
+
+.nav_area{
+  background-color: #26C9A3;
+}
+

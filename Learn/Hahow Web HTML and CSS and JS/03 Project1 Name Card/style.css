@@ -1,0 +1,112 @@
+* {
+	/*border: solid 1px black;*/
+	font-family: 微軟正黑體;
+	/* .namecard裡面的circle需要對namecard做定位 而watermark需要對背景做定位 乾脆在這裡一起都設成relative 反正和預設的static沒什麼差別 只是可以做偏移 */
+	position: relative;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #d1d1d1; /* 某種灰色 */
+	border-top: solid 20px #46d6c0; /* 上邊線 */
+	border-bottom: solid 20px #46d6c0; /* 下邊線 */
+	
+	/* 預設框線會有額外體積(因為內距 padding 的值以及邊框 border 的粗細而有所影響) 所以可能導致有超出頁面的寬度 */
+	/* box-sizing 指定如何處理這些東西 */
+	/* border-box 就是整個寬度全包進來 */
+	/*http://www.wibibi.com/info.php?tid=CSS3_box-sizing_%E5%B1%AC%E6%80%A7*/
+	box-sizing: border-box;
+	/* overflow 設定超出去的元素該怎麼處理 如果scroll就是出現滾動條 可單獨指定overflow-X(橫軸)和overflow-Y(垂直軸) */
+	overflow: hidden; /* 隱藏超過這尺寸的東西 */
+}
+
+.namecard {
+	width: 350px;
+	height: 200px;
+	padding: 20px;
+	/* 左右邊margin都auto 則會自動把兩邊取一樣的 東西就會放到中間了 */
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 150px;
+	background-color: #eee; /* #eeeeee簡寫 */
+
+	/* letter */
+	letter-spacing: 1px;
+	font-weight: 100; /* 細體 */
+	color: #666;
+
+	overflow: hidden;
+	border: solid 1px rgba(0, 0, 0, 0.15);
+	border-radius: 6px;
+
+	/* 整張發散式的陰影 */
+	/* 參數: x(必要值) y(必要值) 模糊(blur)程度(預設值為0,不可為負值) 擴散(spread)強度(可以想像成陰影寬度吧)(預設值為0) 顏色 inset(有的話就變內縮, 也可以放在第一個位置) */
+	/* inset 變內縮 */
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.namecard h2 {
+	font-size: 25px;
+	font-weight: 700; /* 粗體 */
+}
+
+/* .namecard h2 span */
+.eng_name {
+	font-size: 12px;
+}
+
+.namecard h5 {
+	color: #46d6c0;
+	font-weight: 500;
+}
+
+.namecard p {
+	font-style: 12px;
+	line-height: 22px;
+}
+
+.circle {
+	width: 100px;
+	height: 100px;
+	border-radius: 100%; /**/
+	position: absolute;
+}
+
+.circle_upper {
+	width: 60px;
+	height: 60px;
+	/* 右上角四分之一圓 */
+	right: -30px; /* 此元素的"右邊線" 距離(一般距離是往內移動)父容器的"右邊線" -30px(負數就是超出父容器) */
+	top: -30px; /* 此元素的"上邊線" 距離(一般距離是往內移動)父容器的"上邊線" -30px(負數就是超出父容器) */
+	border: solid 3px #46d6c0;
+}
+
+.circle_bottom {
+	/* 偏右下角近乎半圓 */
+	right: 100px; /* 此元素的"右邊線" 距離(一般距離是往內移動)父容器的"右邊線" 100px */
+	bottom: -60px; /* 此元素的"下邊線" 距離(一般距離是往內移動)父容器的"下邊線" -60px(負數就是超出父容器) */
+	background-color: #46d6c0;
+}
+
+.page_title {
+	/* 因為現在是預設的block 會自動左右填滿 所以這裡用文字置中 讓他看起來是在中間(文字部分在這個容器中間了) */
+	text-align: center;
+	color: #555;
+	font-weight: 500;
+}
+
+.watermark {
+	font-size: 300px;
+	/* 必須讓他不參與排列 否則會擠開其他東西 */
+	/* 至於放在後面...就先寫啊... */
+	position: absolute;
+	bottom: 100px;
+	font-weight: 100;
+	color: rgba(0, 0, 0, 0.035);
+}

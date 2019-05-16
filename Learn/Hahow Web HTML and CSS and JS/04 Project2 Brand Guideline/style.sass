@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+// colors
+$color_yellow: #ffb336
+$color_blue: #27232F
+$color_white: #f3f7f7
+$color_grey: #333
+
+$font_base_size: 10px
+
+$max_content_width: 768px
+
+$button_border_width: 1px
+
+// @mixin size
+=size($width, $height)
+	width: $width
+	height: $height
+
+*
+	// border: solid 1px black
+	position: relative
+
+html, body
+	padding: 0px
+	margin: 0px
+
+.header
+	height: 300px
+	background-color: $color_blue
+
+	.icon
+		width: 150px
+		position: absolute
+		left: 50%
+		top: 50%
+		transform: translate(-50%, -50%) /* 因為移動的點是左上角, 所以要中間對齊就要在轉移自己的寬高一半回來 */
+
+/* RWD作法 固定寬度不跑 縮放都會在中間 */
+.max_width
+	max-width: $max_content_width
+	margin-left: auto
+	margin-right: auto
+
+.content
+	font-family: 'Fjalla One', sans-serif, 微軟正黑體
+	padding: 50px
+	
+	// = & h5: & 代表此時父元素
+	// = .content h5
+	// 這裡其實縮進來寫就已經代表content裡面的h5了
+	h5
+		margin-top: 10px
+
+	h1
+		font-size: $font_base_size * 4
+	h2
+		font-size: $font_base_size * 3
+	h3
+		font-size: $font_base_size * 2
+	
+	// = & .small_english (和&.small_english不一樣, 空格是裡面, 連在一起寫是元素同時要有這兩個class, 逗號是元素有這兩個class任一個的都算)
+	.small_english
+		margin-top: -15px
+	
+	// 不能把.small_english寫在上面那些h幾的內縮裡 不要搞錯 這裡是有個h1同時宣告class是small_english  縮在裡面的意思是h1文字裡面有宣告一個div.small_english
+	h1.small_english
+		font-size: $font_base_size * 2.4
+	h2.small_english
+		font-size: $font_base_size * 1.6
+	h3.small_english
+		font-size: $font_base_size * 1.2
+
+	.title_hr
+		width: 100px
+		border-bottom: solid 5px
+		border-color: $color_yellow
+
+	.button
+		padding: 5px 25px
+		display: inline-block
+		border: solid $button_border_width $color_grey
+		margin-right: 10px
+		letter-spacing: 2px
+		font-size: $font-base-size*1.5
+		font-weight: bold
+
+	.button_blue
+		background-color: $color_blue
+		color: $color_white
+		font-weight: 500 /* 深底時白字有膨脹效果 所以特別調細一點 */
+
+	.button_yellow
+		background-color: $color_yellow
+		color: $color_blue
+
+	.color_chip
+		display: inline-block /* 四大個色票排一列 */
+		margin-right: 30px
+
+		/* 調整位置 */
+		/* 要兩個一起同個display就用逗號同時選 */
+		.color_tag, .color_block
+			display: inline-block /* tag和block的部份成一列 */
+			vertical-align: middle /* tag和block的部分垂直副軸以兩個的中間對齊 */
+
+		/* 調整大小 */
+		.color_tag
+			width: 60px /* 因為有英數混搭 這兩種字寬度大小不一樣 所以最好給個所有tag都容納的寬度 要不按照自動寬度會不好對齊 */
+		.color_block
+			border: solid 2px
+			+size(30px, 30px)
+
+		/* 調整顏色 */
+		.color_block_yellow
+			background-color: $color_yellow
+		.color_block_blue
+			background-color: $color_blue
+		.color_block_white
+			background-color: $color_white
+		.color_block_grey
+			background-color: $color_grey
+
+.content_white
+	background-color: $color_white
+	color: $color_blue
+
+	.small_english
+		color: $color_blue
+
+	.button
+		border-color: $color_blue
+
+.content_grey
+	background-color: $color_grey
+
+	.small_english
+		color: $color_yellow
+
+	h1, h2, h3
+		font-weight: 500 /* 深底和深色也有染開的感覺 所以這裡是要減低膨脹感 */
+
+	.button
+		border-color: $color_white
+		font-weight: 500  /* 深底和深色也有染開的感覺 所以這裡是要減低膨脹感 */
+
+	.button_yellow
+		font-weight: bold /* 本來是粗體 只是為了因應上面button的調整 在底是黃色(非淺色)的這裡(沒有膨脹感) 調回粗體 */
+
+.content_blue
+	background-color: $color_blue
+	color: $color_white
+
+	.small_english
+		color: $color_yellow
+
+	h1, h2, h3
+		font-weight: 500 /* 深底白字膨脹感 */
+
+	.button
+		border-color: $color_white
+		font-weight: 500  /* 深底和深色也有染開的感覺 所以這裡是要減低膨脹感 */
+
+	.button_yellow
+		font-weight: bold /* 本來是粗體 只是為了因應上面button的調整 在底是黃色(非淺色)的這裡(沒有膨脹感) 調回粗體 */

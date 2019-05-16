@@ -1,0 +1,17 @@
+html
+	head
+		meta(charset="utf-8")
+		title Denifition Attribution
+		link(rel="stylesheet", href="../css/style.css")
+	body
+		//
+			自定義屬性data-* attr科普:
+			http://muki.tw/tech/pure-css-tooltip-data-tag/
+			https://pjchender.blogspot.tw/2017/01/html-5-data-attribute.html
+			
+			emmet: div[data-size="small" data-color="red"]*3
+			pug屬性用()在裡面表示, 但是emmet語法是用[]在裡面表示
+			而且pug屬性之間給不給逗號都可以, 但是emmet給逗號會變成多個","
+		div(data-size="small", data-color="red") 按鈕
+		div(data-size="medium", data-color="green") 按鈕
+		div(data-size="big", data-color="blue") 按鈕
